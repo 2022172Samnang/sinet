@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import CategorySelector from '@/components/CategorySelector';
@@ -14,7 +15,8 @@ const Index = () => {
       title: "FIBER EDGE",
       startingPrice: "75.00",
       bulletPoints: ["Starting from 15Mbps", "Buy 10 Months, Get 2 Months Free"],
-      special: "Special Offer"
+      special: "Special Offer",
+      link: "/fiber-edge"
     },
     {
       title: "FIBER PLUS",
@@ -78,7 +80,9 @@ const Index = () => {
       <ServiceCategory title="BUSINESS INTERNET" type="business">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {businessPackages.map((pkg, index) => (
-            <ServicePackage key={index} {...pkg} />
+            <Link key={index} to={pkg.link || "#"} className="block">
+              <ServicePackage {...pkg} />
+            </Link>
           ))}
         </div>
       </ServiceCategory>

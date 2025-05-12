@@ -43,7 +43,9 @@ const Navbar = () => {
                 <div className="grid grid-cols-2 gap-2 p-4">
                   <Link to="/business-internet" className="block p-2 hover:bg-sinet-light rounded transition-colors">
                     <div className="font-medium">Business Internet</div>
-                    <div className="text-sm text-gray-500">Solutions for businesses</div>
+                    <div className="text-sm text-gray-500">
+                      <Link to="/fiber-edge" className="hover:text-sinet-dark">Solutions for businesses</Link>
+                    </div>
                   </Link>
                   <Link to="/home-internet" className="block p-2 hover:bg-sinet-light rounded transition-colors">
                     <div className="font-medium">Home Internet</div>
@@ -91,6 +93,9 @@ const Navbar = () => {
               <div className="ml-4 mt-1 space-y-1 bg-gray-50 rounded-md p-2">
                 <Link to="/business-internet" className="block px-4 py-1 text-gray-600 hover:bg-sinet-light rounded text-sm">
                   Business Internet
+                </Link>
+                <Link to="/fiber-edge" className="block px-4 py-1 text-gray-600 hover:bg-sinet-light rounded text-sm">
+                  Fiber Edge
                 </Link>
                 <Link to="/home-internet" className="block px-4 py-1 text-gray-600 hover:bg-sinet-light rounded text-sm">
                   Home Internet
