@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
           <video
             className="absolute inset-0 w-full h-full object-cover"
-            src="/assets/intro_vdo.mov"
+            src="assets/intro_vdo.mov"
             poster="https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg"
             autoPlay
             muted
