@@ -4,6 +4,19 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 import { Menu, X } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,9 +33,26 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/internet-solutions" className="text-gray-700 hover:text-sinet-dark font-medium">
-              Internet Solutions
-            </Link>
+            <HoverCard openDelay={0} closeDelay={200}>
+              <HoverCardTrigger asChild>
+                <Link to="/internet-solutions" className="text-gray-700 hover:text-sinet-dark font-medium">
+                  Internet Solutions
+                </Link>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80 p-0">
+                <div className="grid grid-cols-2 gap-2 p-4">
+                  <Link to="/business-internet" className="block p-2 hover:bg-sinet-light rounded transition-colors">
+                    <div className="font-medium">Business Internet</div>
+                    <div className="text-sm text-gray-500">Solutions for businesses</div>
+                  </Link>
+                  <Link to="/home-internet" className="block p-2 hover:bg-sinet-light rounded transition-colors">
+                    <div className="font-medium">Home Internet</div>
+                    <div className="text-sm text-gray-500">Fast reliable home connections</div>
+                  </Link>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+            
             <Link to="/enterprise-solutions" className="text-gray-700 hover:text-sinet-dark font-medium">
               Enterprise Solutions
             </Link>
@@ -54,9 +84,19 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden mt-2 py-2 space-y-2">
-            <Link to="/internet-solutions" className="block px-4 py-2 text-gray-700 hover:bg-sinet-light rounded">
-              Internet Solutions
-            </Link>
+            <div>
+              <Link to="/internet-solutions" className="block px-4 py-2 text-gray-700 hover:bg-sinet-light rounded font-medium">
+                Internet Solutions
+              </Link>
+              <div className="ml-4 mt-1 space-y-1 bg-gray-50 rounded-md p-2">
+                <Link to="/business-internet" className="block px-4 py-1 text-gray-600 hover:bg-sinet-light rounded text-sm">
+                  Business Internet
+                </Link>
+                <Link to="/home-internet" className="block px-4 py-1 text-gray-600 hover:bg-sinet-light rounded text-sm">
+                  Home Internet
+                </Link>
+              </div>
+            </div>
             <Link to="/enterprise-solutions" className="block px-4 py-2 text-gray-700 hover:bg-sinet-light rounded">
               Enterprise Solutions
             </Link>
