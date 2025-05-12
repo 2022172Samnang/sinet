@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import FiberEdge from "./pages/FiberEdge";
+import FiberPlus from "./pages/FiberPlus";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/business-internet" element={<Index />} />
           <Route path="/home-internet" element={<Index />} />
           <Route path="/fiber-edge" element={<FiberEdge />} />
+          <Route path="/fiber-plus" element={<FiberPlus />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

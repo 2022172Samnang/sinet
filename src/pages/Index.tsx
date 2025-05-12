@@ -21,7 +21,8 @@ const Index = () => {
     {
       title: "FIBER PLUS",
       startingPrice: "120.00",
-      bulletPoints: ["Starting from 30Mbps", "For medium businesses"]
+      bulletPoints: ["Starting from 30Mbps", "For medium businesses"],
+      link: "/fiber-plus"
     },
     {
       title: "DIA with DDoS Protection",
