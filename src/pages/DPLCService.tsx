@@ -45,6 +45,16 @@ const DPLCService = () => {
       title: "Up to 10Gbps",
       description: "Always On Availability.",
     },
+    {
+      icon: <Shield className="h-8 w-8" />,
+      title: "No Filtering Layer 2",
+      description: "Ultimate Scalability.",
+    },
+    {
+      icon: <Check className="h-8 w-8" />,
+      title: "Up to 10Gbps",
+      description: "Always On Availability.",
+    },
   ];
 
   const recommendations = [
@@ -137,7 +147,7 @@ const DPLCService = () => {
           <h2 className="text-3xl font-bold text-center text-teal-800 mb-10">
             FEATURES
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
