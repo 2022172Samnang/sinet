@@ -41,40 +41,16 @@ const Navbar = () => {
   // Define sublinks with icons
   const internetSolutionsLinks = [
     {
-      to: "/fiber-edge",
-      label: "Fiber Edge",
-      description: "50Mbps",
+      to: "/",
+      label: "Business Internet",
+      description: "50Mbps +",
       icon: <Zap className="w-4 h-4" />,
     },
     {
-      to: "/fiber-plus",
-      label: "Fiber Plus",
-      description: "100Mbps",
+      to: "/",
+      label: "Home Internet",
+      description: "15Mbps +",
       icon: <Zap className="w-4 h-4" />,
-    },
-    {
-      to: "/internet-solution/fiber-pro",
-      label: "Fiber Pro",
-      description: "350Mbps",
-      icon: <Zap className="w-4 h-4" />,
-    },
-    {
-      to: "/internet-solution/fiber-one",
-      label: "Fiber One",
-      description: "800Mbps",
-      icon: <Zap className="w-4 h-4" />,
-    },
-    {
-      to: "/internet-solution/compare-packages",
-      label: "Compare Packages",
-      description: "See all differences",
-      icon: <Layout className="w-4 h-4" />,
-    },
-    {
-      to: "/internet-solution/devices",
-      label: "Devices",
-      description: "Choose the right Device",
-      icon: <Cpu className="w-4 h-4" />,
     },
   ];
 
@@ -163,12 +139,12 @@ const Navbar = () => {
       description: "Work with us",
       icon: <Briefcase className="w-4 h-4" />,
     },
-    {
-      to: "/category/press-release",
-      label: "Press Release",
-      description: "Press Release",
-      icon: <FileText className="w-4 h-4" />,
-    },
+    // {
+    //   to: "/category/press-release",
+    //   label: "Press Release",
+    //   description: "Press Release",
+    //   icon: <FileText className="w-4 h-4" />,
+    // },
   ];
 
   // Helper function to render hover cards

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -72,13 +71,6 @@ const Index = () => {
   ];
 
   const enterprisePackages = [
-    {
-      title: "IP Transit",
-      description:
-        "High-speed, low-latency global connectivity for ISPs and enterprises.",
-      imagePath: "assets/internet_solutions/iplc.png",
-      link: "/enterprise-solution/ip-transit",
-    },
     {
       title: "IPLC",
       description:

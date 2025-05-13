@@ -43,7 +43,7 @@ const App = () => (
             path="/customer-service/payment-options"
             element={<PaymentOptions />}
           />
-          <Route path="/about-us/our-backbone" element={<BackbonePage />} />
+          <Route path="/about-us/our-network" element={<BackbonePage />} />
           <Route path="/about-us/why-sinet" element={<WhySinet />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
