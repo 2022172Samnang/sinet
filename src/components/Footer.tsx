@@ -72,7 +72,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/hardware-sales"
+                  to="/enterprise-solution/hardware-sales"
                   className="text-white hover:text-black"
                 >
                   Hardware Sales
@@ -87,10 +87,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/ddos-protection"
-                  className="text-white hover:text-black"
-                >
+                <Link to="/dia" className="text-white hover:text-black">
                   DDoS Protection
                 </Link>
               </li>
@@ -101,7 +98,10 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-white mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about-us" className="text-white hover:text-black">
+                <Link
+                  to="/about-us/company-profile"
+                  className="text-white hover:text-black"
+                >
                   About Us
                 </Link>
               </li>
@@ -115,7 +115,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/customer-services"
+                  to="/customer-service/technical-support"
                   className="text-white hover:text-black"
                 >
                   Customer Services
@@ -130,7 +130,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-white hover:text-black">
+                <Link
+                  to="/about-us/careers"
+                  className="text-white hover:text-black"
+                >
                   Careers
                 </Link>
               </li>

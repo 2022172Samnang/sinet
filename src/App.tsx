@@ -19,6 +19,12 @@ import TechnicalSupport from "./pages/TechnicalSupport";
 import CompanyOverview from "./pages/CompanyOverview";
 import CareerPage from "./pages/CareerPage";
 import FloatingChatButton from "./components/FloatingChatButton";
+import DiaPage from "./pages/DiaPage";
+import FiberHomePage from "./pages/FiberHomePage";
+import FiberPrimePage from "./pages/FiberPrimePage";
+import FiberFirstClassPage from "./pages/FiberFirstClassPage";
+import CompareAllHomePackagesPage from "./pages/CompareAllHomePackagesPage";
+import CompareAllPackagesPage from "./pages/CompareAllPackagesPage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +45,20 @@ const App = () => (
           <Route path="/home-internet" element={<Index />} />
           <Route path="/fiber-edge" element={<FiberEdge />} />
           <Route path="/fiber-plus" element={<FiberPlus />} />
+          <Route path="/dia" element={<DiaPage />} />
+          <Route path="/fiber-home" element={<FiberHomePage />} />
+          <Route path="/fiber-prime" element={<FiberPrimePage />} />
+          <Route path="/first-class" element={<FiberFirstClassPage />} />
+          <Route
+            path="/home-internet/compare-all"
+            element={<CompareAllHomePackagesPage />}
+          />
+
+          <Route
+            path="/compare-all-packages"
+            element={<CompareAllPackagesPage />}
+          />
+
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           <Route

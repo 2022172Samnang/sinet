@@ -137,7 +137,7 @@ const FiberEdge = () => {
         </div>
 
         {/* Contact Information Section */}
-        <section className="py-10 bg-teal-50">
+        {/* <section className="py-10 bg-teal-50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto bg-teal-100 rounded-lg p-6">
               <h3 className="text-center text-lg font-medium text-gray-800 mb-4">
@@ -159,7 +159,7 @@ const FiberEdge = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />
