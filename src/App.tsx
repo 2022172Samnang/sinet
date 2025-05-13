@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,8 +21,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      {/* <BrowserRouter basename="/sinet/"> */}
-      <BrowserRouter>
+      <BrowserRouter basename="/sinet/">
+        {/* <BrowserRouter> */}
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/internet-solutions" element={<Index />} />
@@ -36,8 +35,14 @@ const App = () => (
           <Route path="/fiber-plus" element={<FiberPlus />} />
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
-          <Route path="/enterprise-solution/ip-transit" element={<IPTransit />} />
-          <Route path="/customer-service/payment-options" element={<PaymentOptions />} />
+          <Route
+            path="/enterprise-solution/ip-transit"
+            element={<IPTransit />}
+          />
+          <Route
+            path="/customer-service/payment-options"
+            element={<PaymentOptions />}
+          />
           <Route path="/about-us/our-backbone" element={<BackbonePage />} />
           <Route path="/about-us/why-sinet" element={<WhySinet />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
