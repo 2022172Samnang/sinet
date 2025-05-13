@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,7 @@ import FiberEdge from "./pages/FiberEdge";
 import FiberPlus from "./pages/FiberPlus";
 import DPLCService from "./pages/DPLCService";
 import IPLCService from "./pages/IPLCService";
+import IPTransit from "./pages/IPTransit";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,7 @@ const App = () => (
           <Route path="/fiber-plus" element={<FiberPlus />} />
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
+          <Route path="/enterprise-solution/ip-transit" element={<IPTransit />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

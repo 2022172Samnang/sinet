@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -72,10 +73,18 @@ const Index = () => {
 
   const enterprisePackages = [
     {
+      title: "IP Transit",
+      description:
+        "High-speed, low-latency global connectivity for ISPs and enterprises.",
+      imagePath: "assets/internet_solutions/iplc.png",
+      link: "/enterprise-solution/ip-transit",
+    },
+    {
       title: "IPLC",
       description:
         "International Private Leased Circuit for your global business needs.",
       imagePath: "assets/internet_solutions/iplc.png",
+      link: "/enterprise-solution/iplc",
     },
     {
       title: "Hardware Sales",
@@ -117,7 +126,9 @@ const Index = () => {
       <ServiceCategory title="ENTERPRISE SOLUTIONS" type="enterprise">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {enterprisePackages.map((pkg, index) => (
-            <ServicePackage key={index} {...pkg} />
+            <Link key={index} to={pkg.link || "#"} className="block">
+              <ServicePackage key={index} {...pkg} />
+            </Link>
           ))}
         </div>
       </ServiceCategory>
