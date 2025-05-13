@@ -74,7 +74,14 @@ const Navbar = () => {
       icon: <Globe className="w-4 h-4" />,
     },
     {
-      to: "/enterprise-solution/data-centre",
+      to: "/enterprise-solution/hardware-sales",
+      label: "Hardware Sales",
+      description: "High Speed Router",
+      icon: <Globe className="w-4 h-4" />,
+    },
+    {
+      external: true,
+      href: "https://www.chaktomuk-dc.com.kh/",
       label: "Data Centre",
       description: "Colocation",
       icon: <Server className="w-4 h-4" />,
@@ -109,24 +116,24 @@ const Navbar = () => {
       description: "Nationwide infrastructure",
       icon: <Network className="w-4 h-4" />,
     },
-    {
-      to: "/about-us/metro-link",
-      label: "MetroLink",
-      description: "Underground Metro Fiber",
-      icon: <Code className="w-4 h-4" />,
-    },
+    // {
+    //   to: "/about-us/metro-link",
+    //   label: "MetroLink",
+    //   description: "Underground Metro Fiber",
+    //   icon: <Code className="w-4 h-4" />,
+    // },
     {
       to: "/about-us/why-sinet",
       label: "Why SINET?",
       description: "Why Not?",
       icon: <HelpCircle className="w-4 h-4" />,
     },
-    {
-      to: "/about-us/our-customers",
-      label: "Our Customers",
-      description: "They Trust Us",
-      icon: <Users className="w-4 h-4" />,
-    },
+    // {
+    //   to: "/about-us/our-customers",
+    //   label: "Our Clients",
+    //   description: "They Trust Us",
+    //   icon: <Users className="w-4 h-4" />,
+    // },
     {
       to: "/about-us/company-profile",
       label: "Company Profile",
@@ -161,19 +168,39 @@ const Navbar = () => {
       </HoverCardTrigger>
       <HoverCardContent className="w-96 p-0">
         <div className="grid grid-cols-2 gap-2 p-4">
-          {links.map((link, index) => (
-            <Link
-              key={index}
-              to={link.to}
-              className="flex items-center space-x-2 p-2 hover:bg-sinet-light rounded transition-colors"
-            >
-              <span aria-hidden="true">{link.icon}</span>
-              <div>
-                <div className="font-medium">{link.label}</div>
-                <div className="text-sm text-gray-500">{link.description}</div>
-              </div>
-            </Link>
-          ))}
+          {links.map((link, i) =>
+            link.external ? (
+              <a
+                key={i}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 p-2 hover:bg-sinet-light rounded transition-colors"
+              >
+                {link.icon}
+                <div>
+                  <div className="font-medium">{link.label}</div>
+                  <div className="text-sm text-gray-500">
+                    {link.description}
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <Link
+                key={i}
+                to={link.to}
+                className="flex items-center space-x-2 p-2 hover:bg-sinet-light rounded transition-colors"
+              >
+                {link.icon}
+                <div>
+                  <div className="font-medium">{link.label}</div>
+                  <div className="text-sm text-gray-500">
+                    {link.description}
+                  </div>
+                </div>
+              </Link>
+            )
+          )}
         </div>
       </HoverCardContent>
     </HoverCard>

@@ -4,17 +4,22 @@ import Footer from "@/components/Footer";
 import { Network, Globe, Server, Layers } from "lucide-react";
 
 const BackbonePage = () => {
+  const heroBgImagePath = "assets/about_us/head_bg.png"; // Define path for hero background image
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
       {/* Backbone Hero Section */}
       <section className="py-16 text-white relative overflow-hidden">
-        {/* background image at 30% opacity */}
-        <div className="absolute inset-0 bg-[url('assets/about_us/head_bg.png')] bg-cover bg-center opacity-30"></div>
+        {/* Background Image using <img> tag */}
+        <img
+          src={heroBgImagePath} // Use the defined path
+          alt="SINET Network Backbone Infrastructure" // Descriptive alt text
+          className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
+        />
 
-        {/* optional color overlay if you still want your teal tint underneath */}
-        <div className="absolute inset-0 bg-teal-500 mix-blend-multiply"></div>
+        {/* Optional color overlay if you still want your teal tint underneath */}
+        <div className="absolute inset-0 bg-teal-500 mix-blend-multiply z-10"></div>
 
         {/* your actual content on top */}
         <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center relative z-10">

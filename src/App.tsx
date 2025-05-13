@@ -13,6 +13,12 @@ import IPTransit from "./pages/IPTransit";
 import PaymentOptions from "./pages/PaymentOptions";
 import BackbonePage from "./pages/BackbonePage";
 import WhySinet from "./pages/WhySinet";
+import VPSService from "./pages/VPSService";
+import HardwareSales from "./pages/HardwareSales";
+import TechnicalSupport from "./pages/TechnicalSupport";
+import CompanyOverview from "./pages/CompanyOverview";
+import CareerPage from "./pages/CareerPage";
+import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +42,14 @@ const App = () => (
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           <Route
+            path="/enterprise-solution/hardware-sales"
+            element={<HardwareSales />}
+          />
+          <Route
+            path="/enterprise-solution/virtual-private-server"
+            element={<VPSService />}
+          />
+          <Route
             path="/enterprise-solution/ip-transit"
             element={<IPTransit />}
           />
@@ -43,12 +57,22 @@ const App = () => (
             path="/customer-service/payment-options"
             element={<PaymentOptions />}
           />
+          <Route
+            path="/customer-service/technical-support"
+            element={<TechnicalSupport />}
+          />
+          <Route
+            path="/about-us/company-profile"
+            element={<CompanyOverview />}
+          />
+          <Route path="/about-us/careers" element={<CareerPage />} />
           <Route path="/about-us/our-network" element={<BackbonePage />} />
           <Route path="/about-us/why-sinet" element={<WhySinet />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <FloatingChatButton />
     </TooltipProvider>
   </QueryClientProvider>
 );
