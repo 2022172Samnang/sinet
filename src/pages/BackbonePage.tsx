@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Network } from "lucide-react";
+import { Network, Globe, Server, Layers } from "lucide-react";
 
 const BackbonePage = () => {
   return (
@@ -132,6 +132,80 @@ const BackbonePage = () => {
               alt="SINET Coverage Map" 
               className="w-full h-auto mx-auto border border-gray-300"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION: IP Network */}
+      <section className="py-16 bg-teal-50">
+        <div className="container mx-auto px-4 md:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">OUR IP NETWORK</h2>
+          
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-lg text-gray-700 mb-6">
+              SINET operates a highly resilient and redundant IP backbone completed
+              with industry standard best practices in routing and network security, with
+              multiple gateways to International hubs in Singapore, Hong Kong and Kuala
+              Lumpur.
+            </p>
+            <p className="text-lg text-gray-700">
+              We have peering connections with numerous domestic networks,
+              international networks and Content Delivery Networks both privately and via
+              public exchanges, including but not limited to HKIX, Equinix, MYIX,
+              Amsterdam IX, BBIX, Google, Facebook, Apple, Akamai, Cloudflare, Zenlayer
+              & Limelight.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* At a Glance - IP Network Statistics */}
+      <section className="py-16 bg-teal-50">
+        <div className="container mx-auto px-4 md:px-8">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">AT A GLANCE</h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">4</span>
+              <span className="text-lg text-gray-700">International POPs</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">10</span>
+              <span className="text-lg text-gray-700">Internet Exchanges</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">6</span>
+              <span className="text-lg text-gray-700">Tier 1 Transits</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">210</span>
+              <span className="text-lg text-gray-700">BGP Peering<br />Partners</span>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">40G</span>
+              <span className="text-lg text-gray-700">Juniper IP Core</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">10G</span>
+              <span className="text-lg text-gray-700">SDN-Based<br />MetroEthernet</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">3</span>
+              <span className="text-lg text-gray-700">Autonomous<br />Systems</span>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <span className="text-4xl font-bold mb-2 text-gray-800">IPv4/v6</span>
+              <span className="text-lg text-gray-700">Dual Stacks</span>
+            </div>
           </div>
         </div>
       </section>
