@@ -144,25 +144,25 @@ const Navbar = () => {
   const mainNavItems = [
     {
       label: "Internet Solutions",
-      basePath: "/internet-solution",
+      basePath: "/",
       icon: <Globe className="w-5 h-5" />,
       subLinks: internetSolutionsLinks,
     },
     {
       label: "Enterprise Solutions",
-      basePath: "/enterprise-solution",
+      basePath: "/",
       icon: <Building className="w-5 h-5" />,
       subLinks: enterpriseSolutionsLinks,
     },
     {
       label: "Customer Services",
-      basePath: "/customer-service",
+      basePath: "/",
       icon: <HelpCircle className="w-5 h-5" />,
       subLinks: customerServicesLinks,
     },
     {
       label: "About Us",
-      basePath: "/about-us",
+      basePath: "/",
       icon: <Info className="w-5 h-5" />,
       subLinks: aboutUsLinks,
     },
