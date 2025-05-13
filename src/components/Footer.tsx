@@ -109,6 +109,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/about-us/our-backbone"
+                  className="text-gray-600 hover:text-sinet-dark"
+                >
+                  Our Backbone
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/customer-services"
                   className="text-gray-600 hover:text-sinet-dark"
                 >

@@ -12,6 +12,7 @@ import DPLCService from "./pages/DPLCService";
 import IPLCService from "./pages/IPLCService";
 import IPTransit from "./pages/IPTransit";
 import PaymentOptions from "./pages/PaymentOptions";
+import BackbonePage from "./pages/BackbonePage";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           <Route path="/enterprise-solution/ip-transit" element={<IPTransit />} />
           <Route path="/customer-service/payment-options" element={<PaymentOptions />} />
+          <Route path="/about-us/our-backbone" element={<BackbonePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
