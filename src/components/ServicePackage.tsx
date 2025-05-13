@@ -41,7 +41,7 @@ const ServicePackage: React.FC<ServicePackageProps> = ({
 
           {/* Button overlay at bottom right of image */}
           <div className="absolute bottom-4 right-4">
-            <Button className="bg-sinet-dark hover:bg-sinet-darkest">
+            <Button className="bg-sinet-dark hover:bg-sinet-darkest w-36 h-18">
               SIGN UP
             </Button>
           </div>
