@@ -214,25 +214,25 @@ const Navbar = () => {
             {renderHoverCard(
               "Internet Solutions",
               internetSolutionsLinks,
-              "/internet-solution",
+              "/",
               <Globe className="w-5 h-5" />
             )}
             {renderHoverCard(
               "Enterprise Solutions",
               enterpriseSolutionsLinks,
-              "/enterprise-solution",
+              "/",
               <Building className="w-5 h-5" />
             )}
             {renderHoverCard(
               "Customer Services",
               customerServicesLinks,
-              "/customer-service",
+              "/",
               <HelpCircle className="w-5 h-5" />
             )}
             {renderHoverCard(
               "About Us",
               aboutUsLinks,
-              "/about-us",
+              "/",
               <Info className="w-5 h-5" />
             )}
             <Button className="bg-sinet-dark hover:bg-sinet-darkest text-white">

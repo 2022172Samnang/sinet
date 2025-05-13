@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import FiberEdge from "./pages/FiberEdge";
 import FiberPlus from "./pages/FiberPlus";
+import DPLCService from "./pages/DPLCService";
+import IPLCService from "./pages/IPLCService";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/home-internet" element={<Index />} />
           <Route path="/fiber-edge" element={<FiberEdge />} />
           <Route path="/fiber-plus" element={<FiberPlus />} />
+          <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
+          <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
