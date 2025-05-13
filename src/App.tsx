@@ -11,6 +11,7 @@ import FiberPlus from "./pages/FiberPlus";
 import DPLCService from "./pages/DPLCService";
 import IPLCService from "./pages/IPLCService";
 import IPTransit from "./pages/IPTransit";
+import PaymentOptions from "./pages/PaymentOptions";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           <Route path="/enterprise-solution/ip-transit" element={<IPTransit />} />
+          <Route path="/customer-service/payment-options" element={<PaymentOptions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

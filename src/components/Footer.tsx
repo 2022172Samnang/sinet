@@ -1,3 +1,4 @@
+
 import React from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
@@ -62,7 +63,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  to="enterprise-solution/iplc"
+                  to="/enterprise-solution/iplc"
                   className="text-gray-600 hover:text-sinet-dark"
                 >
                   IPLC
@@ -112,6 +113,14 @@ const Footer = () => {
                   className="text-gray-600 hover:text-sinet-dark"
                 >
                   Customer Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/customer-service/payment-options"
+                  className="text-gray-600 hover:text-sinet-dark"
+                >
+                  Payment Options
                 </Link>
               </li>
               <li>
