@@ -68,10 +68,10 @@ const FiberPlus = () => {
         </div>
 
         {/* Sign Up Section */}
-        <div id="signup" className="bg-white">
+        <div id="signup">
           <SignUpForm 
             packageOptions={packageOptions} 
-            selectedPackage="Fiber Plus - 120 Mbps"
+            selectedPackage="fiber-plus-120mbps"
           />
         </div>
       </div>
