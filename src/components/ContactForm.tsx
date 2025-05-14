@@ -13,7 +13,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-green-100 to-blue-100 py-12 md:py-16">
+    <div className="bg-sinet-light bg-opacity-30 py-16 flex justify-center">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
@@ -33,44 +33,60 @@ const ContactForm = () => {
             </h2>
 
             <div className="space-y-8">
-              <div className="flex">
-                <div className="w-1/4">
-                  <h3 className="text-xl font-semibold">Sales</h3>
-                </div>
-                <div className="w-3/4 space-y-1">
-                  <p>Tel: (+855) 81 801 999</p>
-                  <p>Email: sales@sinet.com.kh</p>
-                  <p>WhatsApp: +855 81 801 999</p>
-                  <p>Telegram: https://t.me/SINET_KH</p>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Sales</h3>
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-medium">Tel:</span> (+855) 81 801 999
+                  </p>
+                  <p>
+                    <span className="font-medium">Email:</span>{" "}
+                    sales@sinet.com.kh
+                  </p>
+                  <p>
+                    <span className="font-medium">WhatsApp:</span> +855 81 801
+                    999
+                  </p>
+                  <p>
+                    <span className="font-medium">Telegram:</span>{" "}
+                    https://t.me/SINET_KH
+                  </p>
                 </div>
               </div>
 
-              <div className="flex">
-                <div className="w-1/4">
-                  <h3 className="text-xl font-semibold">Billing</h3>
-                </div>
-                <div className="w-3/4 space-y-1">
-                  <p>Tel: (+855) 81 301 999</p>
-                  <p>Email: billing@sinet.com.kh</p>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">Billing</h3>
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-medium">Tel:</span> (+855) 81 301 999
+                  </p>
+                  <p>
+                    <span className="font-medium">Email:</span>{" "}
+                    billing@sinet.com.kh
+                  </p>
                 </div>
               </div>
 
-              <div className="flex">
-                <div className="w-1/4">
-                  <h3 className="text-xl font-semibold">Technical Support</h3>
-                </div>
-                <div className="w-3/4 space-y-1">
-                  <p>Tel: (+855) 81 901 999</p>
-                  <p>Email: support@sinet.com.kh</p>
-                  <p>Telegram: +855 81 901 999</p>
+              <div>
+                <h3 className="text-xl font-semibold mb-3">
+                  Technical Support
+                </h3>
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-medium">Tel:</span> (+855) 81 901 999
+                  </p>
+                  <p>
+                    <span className="font-medium">Email:</span>{" "}
+                    support@sinet.com.kh
+                  </p>
+                  <p>
+                    <span className="font-medium">Telegram:</span> +855 81 901
+                    999
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="mt-12 pt-6 border-t border-gray-300 text-center">
-          <p className="text-gray-700">Head Office: S.I Building # 93, Preah Sihanouk Blvd, Phnom Penh, Cambodia.</p>
         </div>
       </div>
     </div>
