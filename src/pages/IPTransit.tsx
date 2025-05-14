@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -13,6 +12,7 @@ import {
   ArrowUp,
   Lock,
 } from "lucide-react";
+import SignUpForm from "@/components/SignUpForm";
 
 const IPTransit = () => {
   const features = [
@@ -104,6 +104,13 @@ const IPTransit = () => {
       description: "IP Transit is suitable for corporates with their own IP address space and ASN.",
       icon: <Building className="h-16 w-16 text-white" />,
     },
+  ];
+
+  const packageOptions = [
+    { value: "ip-transit-100mbps", label: "IP Transit - 100Mbps" },
+    { value: "ip-transit-500mbps", label: "IP Transit - 500Mbps" },
+    { value: "ip-transit-1gbps", label: "IP Transit - 1Gbps" },
+    { value: "ip-transit-custom", label: "IP Transit - Custom" },
   ];
 
   return (
@@ -267,68 +274,8 @@ const IPTransit = () => {
       </section>
 
       {/* Sign Up Section */}
-      <div id="signup" className="bg-sinet-light/30 py-12">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">SIGN UP</h2>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">
-                  Select Package
-                </label>
-                <select className="w-full p-2 border rounded">
-                  <option>IP Transit - 100Mbps</option>
-                  <option>IP Transit - 500Mbps</option>
-                  <option>IP Transit - 1Gbps</option>
-                  <option>IP Transit - Custom</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 mb-2">Name</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Phone</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 mb-2">Email</label>
-                  <input type="email" className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Address</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Comment</label>
-                <textarea
-                  className="w-full p-2 border rounded"
-                  rows={4}
-                ></textarea>
-              </div>
-
-              <Button className="w-full bg-sinet hover:bg-sinet-dark text-white py-3">
-                Send
-              </Button>
-            </div>
-
-            <div className="text-center mt-6">
-              <p className="mb-2">
-                Or Chat with our Sales Team by Whatsapp or Telegram via +855 81
-                801 999
-              </p>
-              <p className="mb-2">or call +855 81 801 999</p>
-              <p>Email: sales@sinet.com.kh</p>
-            </div>
-          </div>
-        </div>
+      <div id="signup">
+        <SignUpForm packageOptions={packageOptions} />
       </div>
 
       <Footer />

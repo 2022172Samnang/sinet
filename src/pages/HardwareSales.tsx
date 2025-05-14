@@ -1,7 +1,9 @@
+
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import SignUpForm from "@/components/SignUpForm";
 
 const HardwareSales: React.FC = () => {
   const product = {
@@ -18,6 +20,11 @@ const HardwareSales: React.FC = () => {
     logoUrl: "assets/sinet_logo_white.png", // Make sure this path is correct from /public
   };
   const productDisplayItems = [product, product, product];
+
+  const packageOptions = [
+    { value: "tp-link-archer-c9", label: `${product.name} - $${product.price}` },
+    { value: "other-hardware", label: "Other Hardware Inquiry" },
+  ];
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gray-50">
@@ -121,119 +128,11 @@ const HardwareSales: React.FC = () => {
       </section>
 
       {/* Sign Up Section */}
-      <div id="signup-form" className="bg-gray-100 py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-            SIGN UP
-          </h2>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl">
-              <div className="mb-5">
-                <label
-                  htmlFor="package"
-                  className="block text-gray-700 mb-2 font-medium"
-                >
-                  Select Package
-                </label>
-                <select
-                  id="package"
-                  className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                >
-                  <option>
-                    {product.name} - ${product.price}
-                  </option>
-                  <option>Other Hardware Inquiry</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="address"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    id="address"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label
-                  htmlFor="comment"
-                  className="block text-gray-700 mb-2 font-medium"
-                >
-                  Comment
-                </label>
-                <textarea
-                  id="comment"
-                  rows={4}
-                  placeholder="Any specific requests or questions about the hardware..."
-                  className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                ></textarea>
-              </div>
-
-              <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 text-lg font-semibold rounded-md">
-                Send
-              </Button>
-            </div>
-
-            <div className="text-center mt-8 text-gray-600 text-sm md:text-base">
-              <p className="mb-2">
-                Or chat with our Sales Team via WhatsApp/Telegram: +855 81 801
-                999
-              </p>
-              <p className="mb-2">or call +855 81 801 999</p>
-              <p>Email: sales@sinet.com.kh</p>
-            </div>
-          </div>
-        </div>
+      <div id="signup-form">
+        <SignUpForm 
+          packageOptions={packageOptions}
+          selectedPackage="tp-link-archer-c9"
+        />
       </div>
 
       <Footer />

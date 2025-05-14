@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SignUpForm from "@/components/SignUpForm";
 
 interface Feature {
   text: string;
@@ -86,16 +87,17 @@ const FiberPrimePage: React.FC = () => {
     },
   ];
 
+  const packageOptions = [
+    { value: "fiber-prime-30mbps", label: "Fiber Prime - 30 Mbps" },
+    { value: "fiber-prime-plus-30mbps", label: "Fiber Prime Plus - 30 Mbps" },
+    { value: "general-inquiry", label: "General Inquiry for Fiber Prime" },
+  ];
+
   const scrollToSignUp = (planName?: string) => {
     const signUpSection = document.getElementById("signup-form");
     if (signUpSection) {
       signUpSection.scrollIntoView({ behavior: "smooth" });
-      const packageSelect = document.getElementById(
-        "package-select-prime"
-      ) as HTMLSelectElement | null;
-      if (packageSelect && planName) {
-        packageSelect.value = planName; // Directly set value if it matches the option value
-      }
+      // Note: Since we've now moved to a component, this direct DOM manipulation might need refactoring
     }
   };
 
@@ -123,7 +125,6 @@ const FiberPrimePage: React.FC = () => {
                 <div className="text-lg font-medium text-gray-800 mb-8">
                   {promotion}
                 </div>
-                {/* Removed Sign Up button from here, it's in the pricing table */}
               </div>
 
               {/* Right Side - Features Card */}
@@ -148,8 +149,6 @@ const FiberPrimePage: React.FC = () => {
 
         {/* Pricing Table Section */}
         <section className="py-12 md:py-16 bg-sky-100">
-          {" "}
-          {/* Light blue background for pricing */}
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 md:mb-12">
               PRICING
@@ -232,181 +231,12 @@ const FiberPrimePage: React.FC = () => {
         </section>
 
         {/* Sign Up Section */}
-        <div id="signup-form" className="bg-sky-50 py-12 md:py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
-              SIGN UP
-            </h2>
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl">
-                <div className="mb-5">
-                  <label
-                    htmlFor="package-select-prime"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Select Package
-                  </label>
-                  <select
-                    id="package-select-prime"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  >
-                    <option value="">-- Select a Package --</option>
-                    <option value="Fiber Prime - 30 Mbps">
-                      Fiber Prime - 30 Mbps
-                    </option>
-                    <option value="Fiber Prime Plus - 30 Mbps">
-                      Fiber Prime Plus - 30 Mbps
-                    </option>
-                    <option value="General Inquiry">
-                      General Inquiry for Fiber Prime
-                    </option>
-                  </select>
-                </div>
-
-                {/* ... rest of the form fields (Name, Phone, Email, Address, Comment) ... */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                  <div>
-                    <label
-                      htmlFor="signup-name"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="signup-name"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="signup-phone"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      id="signup-phone"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                  <div>
-                    <label
-                      htmlFor="signup-email"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="signup-email"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="signup-address"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Address
-                    </label>
-                    <input
-                      type="text"
-                      id="signup-address"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label
-                    htmlFor="signup-comment"
-                    className="block text-gray-700 mb-2 font-medium"
-                  >
-                    Comment / Questions
-                  </label>
-                  <textarea
-                    id="signup-comment"
-                    rows={4}
-                    placeholder="Any specific requirements or questions..."
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
-                  ></textarea>
-                </div>
-                <Button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 text-lg font-semibold rounded-md">
-                  Send Inquiry
-                </Button>
-              </div>
-
-              <div className="text-center mt-8 text-gray-600">
-                <p className="mb-2">
-                  Or Chat with our Sales Team by Whatsapp or Telegram via{" "}
-                  <a
-                    href="tel:+85581801999"
-                    className="text-teal-600 hover:underline font-medium"
-                  >
-                    +855 81 801 999
-                  </a>
-                </p>
-                {/* ... rest of the contact info ... */}
-                <p className="mb-2">
-                  or call{" "}
-                  <a
-                    href="tel:+85581801999"
-                    className="text-teal-600 hover:underline font-medium"
-                  >
-                    +855 81 801 999
-                  </a>
-                </p>
-                <p>
-                  Email:{" "}
-                  <a
-                    href="mailto:sales@sinet.com.kh"
-                    className="text-teal-600 hover:underline font-medium"
-                  >
-                    sales@sinet.com.kh
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
+        <div id="signup-form">
+          <SignUpForm 
+            packageOptions={packageOptions}
+            className="bg-sky-50"
+          />
         </div>
-
-        {/* Contact Information Box (from FiberHome, adjusted for FiberPrime) */}
-        {/* <section className="py-10 bg-emerald-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-md mx-auto bg-gradient-to-tr from-sky-300 via-cyan-200 to-emerald-300 rounded-lg p-6 shadow-lg">
-              <h3 className="text-center text-lg font-semibold text-slate-800 mb-4">
-                For More Information:
-              </h3>
-              <div className="text-center text-slate-700">
-                <p className="mb-2">
-                  Phone:{" "}
-                  <a
-                    href="tel:+85581801999"
-                    className="font-medium hover:underline text-slate-800"
-                  >
-                    +855 81 801 999
-                  </a>
-                </p>
-                <p>
-                  Telegram direct:
-                  <a
-                    href="https://t.me/SINET_KH"
-                    className="font-medium hover:underline text-slate-800 ml-1 break-all"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://t.me/SINET_KH
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </main>
 
       <Footer />

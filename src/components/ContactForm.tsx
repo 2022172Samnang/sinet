@@ -1,74 +1,26 @@
+
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import SignUpForm from "./SignUpForm";
 
 const ContactForm = () => {
+  const packageOptions = [
+    { value: "fiber-edge", label: "Fiber Edge" },
+    { value: "fiber-plus", label: "Fiber Plus" },
+    { value: "dia-ddos", label: "DIA with DDoS Protection" },
+    { value: "fiber-home", label: "Fiber Home" },
+    { value: "fiber-prime", label: "Fiber Prime" },
+    { value: "first-class", label: "SINET - First Class" },
+  ];
+
   return (
     <div className="bg-sinet-light bg-opacity-30 py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold text-center md:text-left mb-8">
-              SIGN UP
-            </h2>
-            <form className="space-y-4">
-              <div>
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select Package" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="fiber-edge">Fiber Edge</SelectItem>
-                    <SelectItem value="fiber-plus">Fiber Plus</SelectItem>
-                    <SelectItem value="dia-ddos">
-                      DIA with DDoS Protection
-                    </SelectItem>
-                    <SelectItem value="fiber-home">Fiber Home</SelectItem>
-                    <SelectItem value="fiber-prime">Fiber Prime</SelectItem>
-                    <SelectItem value="first-class">
-                      SINET - First Class
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div>
-                <Input type="text" placeholder="Name" />
-              </div>
-
-              <div>
-                <Input type="tel" placeholder="Phone" />
-              </div>
-
-              <div>
-                <Input type="email" placeholder="Email" />
-              </div>
-
-              <div>
-                <Input type="text" placeholder="Address" />
-              </div>
-
-              <div>
-                <Textarea placeholder="Comment" rows={5} />
-              </div>
-
-              <div>
-                <Button
-                  type="submit"
-                  className="w-full bg-sinet-dark hover:bg-sinet-darkest"
-                >
-                  Send
-                </Button>
-              </div>
-            </form>
+            <SignUpForm 
+              packageOptions={packageOptions} 
+              className="bg-transparent p-0"
+            />
           </div>
 
           <div>

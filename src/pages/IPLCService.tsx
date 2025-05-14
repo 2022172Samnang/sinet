@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -12,6 +13,7 @@ import {
   DollarSign,
   Handshake,
 } from "lucide-react";
+import SignUpForm from "@/components/SignUpForm";
 
 const IPLCService = () => {
   const features = [
@@ -73,6 +75,12 @@ const IPLCService = () => {
     },
   ];
 
+  const packageOptions = [
+    { value: "dplc-standard", label: "DPLC - Standard" },
+    { value: "dplc-premium", label: "DPLC - Premium" },
+    { value: "dplc-enterprise", label: "DPLC - Enterprise" },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
       {/* Header Section */}
@@ -112,32 +120,6 @@ const IPLCService = () => {
             branches.
           </p>
           <div className="bg-gray-100 p-8 rounded-lg shadow-md">
-            {/* <div className="flex justify-between items-center">
-              <div className="text-center">
-                <img
-                  src="/head-office-icon.png"
-                  alt="Head Office"
-                  className="h-16 mx-auto mb-2"
-                />
-                <p className="text-teal-800 font-semibold">Head Office</p>
-              </div>
-              <div className="text-center">
-                <img
-                  src="/dplc-network-icon.png"
-                  alt="DPLC Network"
-                  className="h-16 mx-auto mb-2"
-                />
-                <p className="text-teal-800 font-semibold">DPLC Network</p>
-              </div>
-              <div className="text-center">
-                <img
-                  src="/regional-offices-icon.png"
-                  alt="Regional Offices"
-                  className="h-16 mx-auto mb-2"
-                />
-                <p className="text-teal-800 font-semibold">Regional Offices</p>
-              </div> */}
-            {/* </div> */}
             <img src="assets/enterprise_solutions/iplc_network.png" alt="" />
           </div>
         </div>
@@ -204,67 +186,10 @@ const IPLCService = () => {
       </section>
 
       {/* Sign Up Section */}
-      <div id="signup" className="bg-sinet-light/30 py-12">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">SIGN UP</h2>
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">
-                  Select Package
-                </label>
-                <select className="w-full p-2 border rounded">
-                  <option>DPLC - Standard</option>
-                  <option>DPLC - Premium</option>
-                  <option>DPLC - Enterprise</option>
-                </select>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 mb-2">Name</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Phone</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-gray-700 mb-2">Email</label>
-                  <input type="email" className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Address</label>
-                  <input type="text" className="w-full p-2 border rounded" />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">Comment</label>
-                <textarea
-                  className="w-full p-2 border rounded"
-                  rows={4}
-                ></textarea>
-              </div>
-
-              <Button className="w-full bg-sinet hover:bg-sinet-dark text-white py-3">
-                Send
-              </Button>
-            </div>
-
-            <div className="text-center mt-6">
-              <p className="mb-2">
-                Or Chat with our Sales Team by Whatsapp or Telegram via +855 81
-                801 999
-              </p>
-              <p className="mb-2">or call +855 81 801 999</p>
-              <p>Email: sales@sinet.com.kh</p>
-            </div>
-          </div>
-        </div>
+      <div id="signup">
+        <SignUpForm 
+          packageOptions={packageOptions}
+        />
       </div>
 
       <Footer />
