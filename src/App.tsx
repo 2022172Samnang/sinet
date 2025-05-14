@@ -33,8 +33,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/sinet/">
-        {/* <BrowserRouter> */}
+      {/* <BrowserRouter basename="/sinet/"> */}
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/internet-solutions" element={<Index />} />
