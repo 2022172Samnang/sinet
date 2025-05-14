@@ -13,17 +13,13 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="bg-sinet-light bg-opacity-30 py-16 flex justify-center">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <div className="bg-sinet-light bg-opacity-30 py-16">
+      <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold text-center mb-8">
-              SIGN UP
-            </h2>
             <SignUpForm 
               packageOptions={packageOptions} 
               className="bg-transparent p-0"
-              title=""
             />
           </div>
 
