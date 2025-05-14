@@ -13,8 +13,8 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="bg-sinet-light bg-opacity-30 py-16">
-      <div className="container mx-auto px-4">
+    <div className="bg-sinet-light bg-opacity-30 py-16 flex justify-center">
+      <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <SignUpForm 
