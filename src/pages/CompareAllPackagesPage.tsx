@@ -260,7 +260,7 @@ const CompareAllPackagesPage: React.FC = () => {
         </section>
 
         {/* Common Features Section - UPDATED */}
-        <section className="py-12 md:py-16 bg-emerald-50 overflow-hidden">
+        <section className="py-12 md:py-16 bg-sky-50 overflow-hidden">
           <div className="container mx-auto px-4">
             <AnimatedSection yOffset={30} className="text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
