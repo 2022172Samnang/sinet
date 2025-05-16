@@ -65,13 +65,19 @@ const FiberPrimePage: React.FC = () => {
       fiberPrime: (
         <>
           $28/month <br />
-          <span className="text-xs">Buy 10 months, Get 2 months free!</span>
+          <span className="text-sm">
+            Buy 10 months, Get 2 months free!
+          </span>{" "}
+          {/* Increased from text-xs */}
         </>
       ),
       fiberPrimePlus: (
         <>
           $33/month <br />
-          <span className="text-xs">Buy 10 months, Get 2 months free!</span>
+          <span className="text-sm">
+            Buy 10 months, Get 2 months free!
+          </span>{" "}
+          {/* Increased from text-xs */}
         </>
       ),
     },
@@ -98,7 +104,7 @@ const FiberPrimePage: React.FC = () => {
     const signUpSection = document.getElementById("signup-form");
     if (signUpSection) {
       signUpSection.scrollIntoView({ behavior: "smooth" });
-      // Note: Since we've now moved to a component, this direct DOM manipulation might need refactoring
+      // Note: If SignUpForm needs to know about planName, it should be passed as a prop
     }
   };
 
@@ -109,36 +115,40 @@ const FiberPrimePage: React.FC = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-sky-100 via-cyan-50 to-emerald-50 py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-24">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
               {/* Left Side - Package Details */}
               <div className="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-                <h1 className="text-4xl md:text-5xl font-bold text-amber-700 mb-3 italic drop-shadow-sm">
+                <h1 className="text-5xl md:text-6xl font-bold text-amber-700 mb-3 italic drop-shadow-sm">
                   {packageName}
                 </h1>
-                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 drop-shadow">
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-4 drop-shadow">
                   {packageSpeed}
                 </h2>
-                <div className="text-xl text-gray-700 mb-4">
+                <div className="text-2xl text-gray-700 mb-4">
                   Starting from{" "}
                   <span className="font-semibold">{startingPrice}</span>
                 </div>
-                <div className="text-lg font-medium text-gray-800 mb-8">
+                <div className="text-xl font-medium text-gray-800 mb-8">
                   {promotion}
                 </div>
+                {/* Note: The Sign Up button was removed here, presumably because the pricing table buttons serve this purpose */}
               </div>
 
               {/* Right Side - Features Card */}
               <div className="md:w-1/2">
                 <div className="bg-white p-8 rounded-lg shadow-xl">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-6 uppercase text-center md:text-left">
+                  <h3 className="text-3xl font-bold text-gray-800 mb-6 uppercase text-center md:text-left">
                     Features
                   </h3>
                   <ul className="space-y-4">
                     {heroFeatures.map((feature, index) => (
                       <li key={index} className="flex items-start">
-                        <Check className="h-6 w-6 text-teal-600 mr-3 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature.text}</span>
+                        <Check className="h-6 w-6 text-teal-600 mr-3 flex-shrink-0 mt-1" />{" "}
+                        {/* Adjusted mt */}
+                        <span className="text-gray-700 text-lg">
+                          {feature.text}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -151,19 +161,21 @@ const FiberPrimePage: React.FC = () => {
         {/* Pricing Table Section */}
         <section className="py-12 md:py-16 bg-sky-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 md:mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-10 md:mb-12">
               PRICING
             </h2>
             <div className="max-w-4xl mx-auto shadow-xl rounded-lg overflow-hidden">
-              <div className="grid grid-cols-[1fr_1fr_1fr] md:grid-cols-[minmax(150px,_1.5fr)_1fr_1fr] bg-white">
+              <div className="grid grid-cols-[1fr_1fr_1fr] md:grid-cols-[minmax(150px,_1.5fr)_1fr_1fr] bg-white text-base">
+                {" "}
+                {/* Added base text size */}
                 {pricingTableDetails.map((detail, index) => (
                   <React.Fragment key={index}>
                     {/* Label Column */}
                     <div
-                      className={`p-3 md:p-4 border-b border-r border-gray-200 flex items-center 
+                      className={`p-3 md:p-4 border-b border-r border-gray-200 flex items-center text-lg {/* Increased base */}
                         ${
                           detail.isHeader
-                            ? "bg-transparent text-teal-600 font-semibold text-lg justify-start h-full"
+                            ? "bg-transparent text-teal-600 font-semibold text-xl justify-start h-full" // Increased
                             : "bg-teal-500 text-white font-medium"
                         }
                         ${detail.isFooter ? "bg-transparent" : ""}`}
@@ -179,10 +191,10 @@ const FiberPrimePage: React.FC = () => {
 
                     {/* Fiber Prime Column */}
                     <div
-                      className={`p-3 md:p-4 border-b border-r border-gray-200 text-center flex flex-col justify-center items-center
+                      className={`p-3 md:p-4 border-b border-r border-gray-200 text-center flex flex-col justify-center items-center text-lg {/* Increased base */}
                         ${
                           detail.isHeader
-                            ? "bg-slate-700 text-white font-bold text-lg h-full"
+                            ? "bg-slate-700 text-white font-bold text-xl h-full" // Increased
                             : "bg-gray-50 text-gray-700"
                         }
                         ${detail.isFooter ? "bg-gray-50 py-4" : ""}`}
@@ -192,7 +204,7 @@ const FiberPrimePage: React.FC = () => {
                           onClick={() =>
                             scrollToSignUp("Fiber Prime - 30 Mbps")
                           }
-                          className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2 rounded-md text-sm"
+                          className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2 rounded-md text-base" // Increased from text-sm
                         >
                           {String(detail.fiberPrime)}
                         </Button>
@@ -203,10 +215,10 @@ const FiberPrimePage: React.FC = () => {
 
                     {/* Fiber Prime Plus Column */}
                     <div
-                      className={`p-3 md:p-4 border-b border-gray-200 text-center flex flex-col justify-center items-center
+                      className={`p-3 md:p-4 border-b border-gray-200 text-center flex flex-col justify-center items-center text-lg {/* Increased base */}
                         ${
                           detail.isHeader
-                            ? "bg-slate-700 text-white font-bold text-lg h-full"
+                            ? "bg-slate-700 text-white font-bold text-xl h-full" // Increased
                             : "bg-gray-50 text-gray-700"
                         }
                         ${detail.isFooter ? "bg-gray-50 py-4" : ""}`}
@@ -216,7 +228,7 @@ const FiberPrimePage: React.FC = () => {
                           onClick={() =>
                             scrollToSignUp("Fiber Prime Plus - 30 Mbps")
                           }
-                          className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2 rounded-md text-sm"
+                          className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-2 rounded-md text-base" // Increased from text-sm
                         >
                           {String(detail.fiberPrimePlus)}
                         </Button>
@@ -232,6 +244,8 @@ const FiberPrimePage: React.FC = () => {
         </section>
 
         {/* Sign Up Section */}
+        {/* Note: Font sizes within SignUpForm would need to be adjusted in the SignUpForm component itself */}
+        {/* or by passing props if the component supports it. */}
         <div id="signup-form">
           <SignUpForm packageOptions={packageOptions} className="bg-sky-50" />
         </div>
