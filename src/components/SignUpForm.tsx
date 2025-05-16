@@ -64,7 +64,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
   // The `className` prop from ContactForm (e.g., "bg-transparent p-0") will be applied here,
   // ensuring no extra padding from SignUpForm's root when embedded.
   return (
-    <div id="signup" className={`overflow-hidden ${className}`}>
+    <div id="signup" className={`overflow-hidden ${className} md:mb-2`}>
       {/* Title section - centered */}
       <div className="text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-8">{title}</h2>
