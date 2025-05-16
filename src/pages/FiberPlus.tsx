@@ -101,7 +101,7 @@ const FiberPlus = () => {
       </div>
       <BusinessPackages
         navbarOffset="80px"
-        gridCols={3}
+        gridCols={4}
         excludeLink="/fiber-plus"
       />
 

@@ -448,7 +448,7 @@ const FiberFirstClassPage: React.FC = () => {
 
       <HomePackages
         navbarOffset="80px"
-        gridCols={3}
+        gridCols={4}
         excludeLink="/first-class" // Assuming the route is /first-class
       />
 

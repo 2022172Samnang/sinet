@@ -358,7 +358,7 @@ const DiaPage: React.FC = () => {
           </div>
         </div>
       </main>
-      <BusinessPackages navbarOffset="80px" gridCols={3} excludeLink="/dia" />
+      <BusinessPackages navbarOffset="80px" gridCols={4} excludeLink="/dia" />
       <Footer />
     </div>
   );

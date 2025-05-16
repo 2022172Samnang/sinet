@@ -169,7 +169,7 @@ const FiberEdge = () => {
         </section> */}
         <BusinessPackages
           navbarOffset="80px"
-          gridCols={3}
+          gridCols={4}
           excludeLink="/fiber-edge"
         />
       </main>

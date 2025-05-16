@@ -252,7 +252,7 @@ const FiberPrimePage: React.FC = () => {
       </main>
       <HomePackages
         navbarOffset="80px"
-        gridCols={3}
+        gridCols={4}
         excludeLink="/fiber-prime"
       />
 
