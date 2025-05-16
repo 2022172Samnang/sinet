@@ -9,6 +9,10 @@ import ServicePackage from "@/components/ServicePackage";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
+// Assuming Navbar height is roughly 64px (h-16 in Navbar.tsx)
+// You can make this a constant or pass it as a prop if it changes.
+const NAVBAR_HEIGHT_OFFSET = "80px"; // Adjust this value based on your actual Navbar height
+
 const Index = () => {
   const businessPackages = [
     {
@@ -34,13 +38,13 @@ const Index = () => {
       startingPrice: "150.00",
       imagePath: "assets/internet_solutions/dia-ddos.png",
       bulletPoints: ["Starting from 50Mbps", "Advanced security protection"],
-      link: "/dia", // Make sure this matches a route in App.tsx
+      link: "/dia",
     },
     {
       title: "See all Business Packages & Prices",
       description:
         "Compare all our business packages and find the perfect solution for your company.",
-      link: "/compare-all-packages", // Make sure this matches a route in App.tsx
+      link: "/compare-all-packages",
       imagePath: "assets/internet_solutions/compare-all-packages.png",
     },
   ];
@@ -50,7 +54,7 @@ const Index = () => {
       title: "FIBER HOME",
       startingPrice: "22.00",
       bulletPoints: ["15 Mbps", "Perfect for small households"],
-      link: "/fiber-home", // This link should now work
+      link: "/fiber-home",
       imagePath: "assets/internet_solutions/fiber-home.png",
     },
     {
@@ -58,20 +62,20 @@ const Index = () => {
       startingPrice: "28.00",
       bulletPoints: ["25 Mbps", "For gaming and streaming"],
       imagePath: "assets/internet_solutions/fiber-prime.png",
-      link: "/fiber-prime", // Add a link if this page exists
+      link: "/fiber-prime",
     },
     {
       title: "SINET - First Class",
       startingPrice: "30.99",
       bulletPoints: ["30 Mbps", "Premium support"],
       imagePath: "assets/internet_solutions/first-class.png",
-      link: "/first-class", // Add a link if this page exists
+      link: "/first-class",
     },
     {
-      title: "Compare All Packages", // This should probably be "Compare Home Packages"
+      title: "Compare All Packages",
       description: "Find the perfect home internet package for your needs.",
-      link: "/home-internet/compare-all", // Example: create a specific comparison page for home packages
-      imagePath: "assets/internet_solutions/all-business-packages.png", // Consider a different image
+      link: "/home-internet/compare-all",
+      imagePath: "assets/internet_solutions/all-business-packages.png",
     },
   ];
 
@@ -87,14 +91,14 @@ const Index = () => {
       title: "Hardware Sales",
       description: "High-quality networking equipment for your business.",
       imagePath: "assets/internet_solutions/hardware-sale.png",
-      link: "/enterprise-solution/hardware-sales", // Add link if this page exists
+      link: "/enterprise-solution/hardware-sales",
     },
     {
       title: "Network Security Services",
       description:
         "Protect your business with our advanced security solutions.",
       imagePath: "assets/internet_solutions/network-sec.png",
-      link: "/enterprise-solution/network-security", // Add link if this page exists
+      link: "/enterprise-solution/network-security",
     },
   ];
 
@@ -104,37 +108,49 @@ const Index = () => {
       <Hero />
       {/* <CategorySelector /> */}
 
-      <ServiceCategory title="BUSINESS INTERNET" type="business">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {businessPackages.map((pkg, index) => (
-            <Link key={index} to={pkg.link || "#"} className="block h-full">
-              {" "}
-              {/* Added h-full */}
-              <ServicePackage {...pkg} />
-            </Link>
-          ))}
-        </div>
-      </ServiceCategory>
+      {/* --- ADDED id and style for paddingTop --- */}
+      <div
+        id="business-internet"
+        style={{
+          paddingTop: NAVBAR_HEIGHT_OFFSET,
+          marginTop: `-${NAVBAR_HEIGHT_OFFSET}`,
+        }}
+      >
+        <ServiceCategory title="BUSINESS INTERNET" type="business">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {businessPackages.map((pkg, index) => (
+              <Link key={index} to={pkg.link || "#"} className="block h-full">
+                <ServicePackage {...pkg} />
+              </Link>
+            ))}
+          </div>
+        </ServiceCategory>
+      </div>
 
-      <ServiceCategory title="HOME INTERNET" type="home">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {homePackages.map((pkg, index) => (
-            // CORRECTED PART: Wrap ServicePackage with Link
-            <Link key={index} to={pkg.link || "#"} className="block h-full">
-              {" "}
-              {/* Added h-full */}
-              <ServicePackage {...pkg} />
-            </Link>
-          ))}
-        </div>
-      </ServiceCategory>
+      {/* --- ADDED id and style for paddingTop --- */}
+      <div
+        id="home-internet"
+        style={{
+          paddingTop: NAVBAR_HEIGHT_OFFSET,
+          marginTop: `-${NAVBAR_HEIGHT_OFFSET}`,
+        }}
+      >
+        <ServiceCategory title="HOME INTERNET" type="home">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {homePackages.map((pkg, index) => (
+              <Link key={index} to={pkg.link || "#"} className="block h-full">
+                <ServicePackage {...pkg} />
+              </Link>
+            ))}
+          </div>
+        </ServiceCategory>
+      </div>
 
+      {/* Enterprise Solutions does not need an ID for scrolling from navbar based on current reqs */}
       <ServiceCategory title="ENTERPRISE SOLUTIONS" type="enterprise">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {enterprisePackages.map((pkg, index) => (
             <Link key={index} to={pkg.link || "#"} className="block h-full">
-              {" "}
-              {/* Added h-full */}
               <ServicePackage {...pkg} />
             </Link>
           ))}

@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Removed ScrollRestoration if it was there
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import FiberEdge from "./pages/FiberEdge";
@@ -25,6 +25,10 @@ import FiberPrimePage from "./pages/FiberPrimePage";
 import FiberFirstClassPage from "./pages/FiberFirstClassPage";
 import CompareAllHomePackagesPage from "./pages/CompareAllHomePackagesPage";
 import CompareAllPackagesPage from "./pages/CompareAllPackagesPage";
+import ContactPage from "./pages/ContactPage";
+
+import ScrollToTop from "./components/ScrollToTop"; // Adjust the path to where you created ScrollToTop.tsx
+import ContactForm from "./components/ContactForm";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +38,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter basename="/sinet/">
-        {/* <BrowserRouter> */}
+        <ScrollToTop /> {/* Add the custom ScrollToTop component here */}
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/internet-solutions" element={<Index />} />
@@ -53,12 +57,10 @@ const App = () => (
             path="/home-internet/compare-all"
             element={<CompareAllHomePackagesPage />}
           />
-
           <Route
             path="/compare-all-packages"
             element={<CompareAllPackagesPage />}
           />
-
           <Route path="/enterprise-solution/dplc" element={<DPLCService />} />
           <Route path="/enterprise-solution/iplc" element={<IPLCService />} />
           <Route
@@ -90,6 +92,7 @@ const App = () => (
           <Route path="/about-us/why-sinet" element={<WhySinet />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
       <FloatingChatButton />

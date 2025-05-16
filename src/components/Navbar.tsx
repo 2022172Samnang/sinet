@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button"; // Assuming this is ShadCN UI Button or similar
-import Logo from "./Logo"; // Ensure this component exists and is imported
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Button } from "@/components/ui/button";
+import Logo from "./Logo";
 import {
   Menu,
   X,
@@ -16,33 +16,20 @@ import {
   FileText,
   Phone,
   Shield,
-  Box,
-  Cpu,
   Zap,
-  Router as RouterIcon, // Renamed to avoid conflict with react-router
+  Router as RouterIcon,
   MapPin,
   Cloud,
 } from "lucide-react";
 
-// IMPORTANT: Define this color in your tailwind.config.js
-// module.exports = {
-//   theme: {
-//     extend: {
-//       colors: {
-//         'sinet-brand-teal': '#008080', // Replace with SINET's actual teal/green hex code
-//         'sinet-dark': '#your_dark_color',
-//         'sinet-light': '#your_light_color',
-//         'sinet-darkest': '#your_darkest_color',
-//       },
-//     },
-//   },
-// };
+// ... (tailwind.config.js comment) ...
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDesktopCategory, setActiveDesktopCategory] = useState(null);
   const leaveTimeoutRef = useRef(null);
-  const navRef = useRef(null); // Ref for the main nav element
+  const navRef = useRef(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -64,7 +51,7 @@ const Navbar = () => {
   const handleMouseLeaveNavArea = () => {
     leaveTimeoutRef.current = setTimeout(() => {
       setActiveDesktopCategory(null);
-    }, 200);
+    }, 200); // Increased delay for better UX
   };
 
   const handleMouseEnterSubMenu = () => {
@@ -80,15 +67,20 @@ const Navbar = () => {
     }
   };
 
-  // Define sublinks
+  // --- MODIFIED internetSolutionsLinks ---
   const internetSolutionsLinks = [
     {
-      to: "/",
+      to: "/#business-internet", // Scroll to business-internet section on the Index page
       label: "Business Internet",
-      description: "50Mbps +",
-      icon: <Zap />,
+      description: "High-speed for your enterprise", // Updated description
+      icon: <Building className="w-4 h-4 sm:w-5 sm:h-5" />, // Example icon
     },
-    { to: "/", label: "Home Internet", description: "15Mbps +", icon: <Zap /> },
+    {
+      to: "/#home-internet", // Scroll to home-internet section on the Index page
+      label: "Home Internet",
+      description: "Reliable internet for your home", // Updated description
+      icon: <Zap className="w-4 h-4 sm:w-5 sm:h-5" />, // Example icon
+    },
   ];
 
   const enterpriseSolutionsLinks = [
@@ -144,41 +136,88 @@ const Navbar = () => {
   const mainNavItems = [
     {
       label: "Internet Solutions",
-      basePath: "/",
+      basePath: "/", // The page where these sections exist
       icon: <Globe className="w-5 h-5" />,
       subLinks: internetSolutionsLinks,
     },
     {
       label: "Enterprise Solutions",
-      basePath: "/",
+      basePath: "/enterprise-solutions", // Example, adjust if needed
       icon: <Building className="w-5 h-5" />,
       subLinks: enterpriseSolutionsLinks,
     },
     {
       label: "Customer Services",
-      basePath: "/",
+      basePath: "/customer-services", // Example, adjust if needed
       icon: <HelpCircle className="w-5 h-5" />,
       subLinks: customerServicesLinks,
     },
     {
       label: "About Us",
-      basePath: "/",
+      basePath: "/about-us", // Example, adjust if needed
       icon: <Info className="w-5 h-5" />,
       subLinks: aboutUsLinks,
     },
   ];
 
-  // Renders items for the horizontal desktop sub-menu
+  // Function to handle navigation and scrolling for hash links
+  const handleHashLinkClick = (pathWithHash) => {
+    closeAllMenus();
+    const [path, hash] = pathWithHash.split("#");
+
+    // If navigating to the same page (or root for these links) with a hash
+    if (
+      path === "" ||
+      path ===
+        window.location.pathname.replace(
+          import.meta.env.BASE_URL.slice(0, -1),
+          ""
+        )
+    ) {
+      // Adjust for basename
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          return; // Prevent further navigation if already on the page and scrolled
+        }
+      }
+    }
+    // If navigating to a different page, or hash element not found, let Link/navigate handle it
+    // Forcing navigation to ensure the page loads if it's different, then hash scrolling will occur
+    navigate(pathWithHash);
+  };
+
   const renderHorizontalSubMenuItem = (link, index) => {
     const commonProps = {
       key: index,
       className:
-        "flex flex-col items-center text-center text-white transition-colors group w-32 p-2 rounded-md hover:bg-black/10", // Adjusted width and padding
-      onClick: closeAllMenus,
+        "flex flex-col items-center text-center text-white transition-colors group w-32 p-2 rounded-md hover:bg-black/10",
     };
     const iconElement = React.cloneElement(link.icon, {
-      className: "w-9 h-9 mb-1.5 text-current", // Adjusted icon size and margin
+      className: "w-9 h-9 mb-1.5 text-current",
     });
+
+    // --- MODIFIED to use handleHashLinkClick for relevant links ---
+    if (link.to && link.to.includes("#")) {
+      return (
+        <button
+          type="button"
+          onClick={() => handleHashLinkClick(link.to)}
+          {...commonProps}
+        >
+          {iconElement}
+          <span className="text-xs font-medium leading-tight">
+            {link.label}
+          </span>
+          {link.description && (
+            <span className="text-[10px] text-gray-200 mt-0.5">
+              {link.description}
+            </span>
+          )}
+        </button>
+      );
+    }
 
     return link.external ? (
       <a
@@ -186,14 +225,25 @@ const Navbar = () => {
         target="_blank"
         rel="noopener noreferrer"
         {...commonProps}
+        onClick={closeAllMenus}
       >
         {iconElement}
         <span className="text-xs font-medium leading-tight">{link.label}</span>
+        {link.description && (
+          <span className="text-[10px] text-gray-200 mt-0.5">
+            {link.description}
+          </span>
+        )}
       </a>
     ) : (
-      <Link to={link.to} {...commonProps}>
+      <Link to={link.to} {...commonProps} onClick={closeAllMenus}>
         {iconElement}
         <span className="text-xs font-medium leading-tight">{link.label}</span>
+        {link.description && (
+          <span className="text-[10px] text-gray-200 mt-0.5">
+            {link.description}
+          </span>
+        )}
       </Link>
     );
   };
@@ -205,38 +255,49 @@ const Navbar = () => {
       onMouseLeave={handleMouseLeaveNavArea}
     >
       <div className="container mx-auto px-4">
-        {" "}
-        {/* Removed py-2 to consolidate padding control */}
         <div className="flex justify-between items-center h-16">
-          {" "}
-          {/* Fixed height for navbar */}
           <Link to="/" onClick={closeAllMenus} className="flex-shrink-0">
             <Logo />
           </Link>
-          {/* Desktop Navigation Main Items */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {mainNavItems.map((item) => (
               <div
                 key={item.label}
                 onMouseEnter={() => handleMouseEnterNavItem(item)}
-                className="h-full flex items-center" // Ensure div takes full height for consistent hover area
+                className="h-full flex items-center"
               >
+                {/* --- MODIFIED main nav item Link for Internet Solutions --- */}
                 <Link
-                  to={item.basePath}
-                  className="text-gray-700 hover:text-sinet-dark font-medium flex items-center space-x-1.5 px-2 lg:px-3 py-2 rounded-md"
-                  onClick={closeAllMenus}
+                  to={item.basePath} // This will navigate to the page
+                  className="text-gray-700 hover:text-sinet-brand-teal font-medium flex items-center space-x-1.5 px-2 lg:px-3 py-2 rounded-md"
+                  onClick={(e) => {
+                    // If it's the internet solutions and we are already on root, don't prevent default hash scroll
+                    // Otherwise, close menus and let Link navigate
+                    if (
+                      item.label === "Internet Solutions" &&
+                      window.location.pathname.replace(
+                        import.meta.env.BASE_URL.slice(0, -1),
+                        ""
+                      ) === "/"
+                    ) {
+                      // Allow default behavior for Link to handle hash on same page
+                    } else {
+                      closeAllMenus();
+                    }
+                  }}
                 >
                   {item.icon}
                   <span>{item.label}</span>
                 </Link>
               </div>
             ))}
-            <Button
-              className="bg-sinet-dark hover:bg-sinet-darkest text-white ml-2 lg:ml-3 px-4 py-2 text-sm"
-              onClick={closeAllMenus}
-            >
-              Sign Up
-            </Button>
+            <Link to="/contact" onClick={closeAllMenus}>
+              {" "}
+              {/* Assuming you have a /contact route */}
+              <Button className="bg-sinet-dark hover:bg-sinet-darkest text-white ml-2 lg:ml-3 px-4 py-2 text-sm">
+                Sign Up
+              </Button>
+            </Link>
             <Button
               variant="outline"
               className="border-sinet-dark text-sinet-dark hover:bg-sinet-light px-3 py-2 text-sm"
@@ -245,11 +306,10 @@ const Navbar = () => {
               Kh
             </Button>
           </div>
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
-              className="text-gray-700 focus:outline-none focus:text-sinet-dark p-2"
+              className="text-gray-700 focus:outline-none focus:text-sinet-brand-teal p-2"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -261,19 +321,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Horizontal SubMenu - Full Width Background */}
       {activeDesktopCategory &&
         activeDesktopCategory.subLinks &&
         activeDesktopCategory.subLinks.length > 0 && (
           <div
-            className="hidden md:block absolute top-full left-0 right-0 w-full bg-teal-500 shadow-xl z-40" // Changed to sinet-brand-teal
+            className="hidden md:block absolute top-full left-0 right-0 w-full bg-teal-500 shadow-xl z-40" // Or sinet-brand-teal
             onMouseEnter={handleMouseEnterSubMenu}
-            onMouseLeave={handleMouseLeaveNavArea} // If mouse leaves submenu, start timer to close
+            onMouseLeave={handleMouseLeaveNavArea}
           >
-            {/* Container for centering the content within the full-width bar */}
             <div className="container mx-auto flex justify-center items-start flex-wrap gap-x-1 sm:gap-x-2 lg:gap-x-3 gap-y-2 px-4 py-3">
-              {" "}
-              {/* Reduced py and gaps */}
               {activeDesktopCategory.subLinks.map((subLink, index) =>
                 renderHorizontalSubMenuItem(subLink, index)
               )}
@@ -281,23 +337,51 @@ const Navbar = () => {
           </div>
         )}
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 z-40 bg-white shadow-lg border-t py-2 space-y-1">
           {mainNavItems.map((item) => (
             <div key={item.label} className="px-2">
               <Link
                 to={item.basePath}
-                onClick={closeAllMenus}
+                onClick={(e) => {
+                  if (
+                    item.label === "Internet Solutions" &&
+                    window.location.pathname.replace(
+                      import.meta.env.BASE_URL.slice(0, -1),
+                      ""
+                    ) === "/"
+                  ) {
+                    // Allow default behavior for Link to handle hash on same page
+                  } else {
+                    closeAllMenus();
+                  }
+                }}
                 className="block px-3 py-2.5 text-gray-800 hover:bg-sinet-light rounded font-semibold"
               >
                 {item.label}
               </Link>
-              <div className="ml-3 mt-1 mb-2 flex flex-col space-y-0.5 bg-gray-50 rounded-md p-2 ">
+              <div className="ml-3 mt-1 mb-2 flex flex-col space-y-0.5 bg-gray-50 rounded-md p-2">
                 {item.subLinks.map((link, index) => {
                   const mobileIcon = React.cloneElement(link.icon, {
                     className: "w-4 h-4 text-gray-600",
                   });
+
+                  // --- MODIFIED for mobile to use handleHashLinkClick for relevant links ---
+                  if (link.to && link.to.includes("#")) {
+                    return (
+                      <button
+                        type="button"
+                        key={index}
+                        onClick={() => handleHashLinkClick(link.to)}
+                        className="flex items-center space-x-2.5 px-3 py-1.5 text-gray-700 hover:bg-sinet-light rounded text-sm w-full text-left"
+                      >
+                        {mobileIcon}
+                        <span>{link.label}</span>
+                        {/* {link.description && <span className="text-xs text-gray-500 ml-auto">{link.description}</span>} */}
+                      </button>
+                    );
+                  }
+
                   return link.external ? (
                     <a
                       key={index}
@@ -309,6 +393,7 @@ const Navbar = () => {
                     >
                       {mobileIcon}
                       <span>{link.label}</span>
+                      {/* {link.description && <span className="text-xs text-gray-500 ml-auto">{link.description}</span>} */}
                     </a>
                   ) : (
                     <Link
@@ -319,6 +404,7 @@ const Navbar = () => {
                     >
                       {mobileIcon}
                       <span>{link.label}</span>
+                      {/* {link.description && <span className="text-xs text-gray-500 ml-auto">{link.description}</span>} */}
                     </Link>
                   );
                 })}
@@ -326,12 +412,11 @@ const Navbar = () => {
             </div>
           ))}
           <div className="px-4 pt-2 pb-3 flex space-x-2">
-            <Button
-              className="bg-sinet-dark hover:bg-sinet-darkest text-white"
-              onClick={closeAllMenus}
-            >
-              Sign Up
-            </Button>
+            <Link to="/conatct" onClick={closeAllMenus}>
+              <Button className="bg-sinet-dark hover:bg-sinet-darkest text-white">
+                Sign Up
+              </Button>
+            </Link>
             <Button
               variant="outline"
               className="border-sinet-dark text-sinet-dark hover:bg-sinet-light"
