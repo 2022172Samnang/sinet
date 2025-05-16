@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection"; // Assuming this is in src/components/
@@ -21,10 +21,13 @@ interface Package {
   id: string; // For key and potentially linking to signup form
 }
 
-interface CommonFeature {
+// Updated interface for combined feature data
+interface DetailedCommonFeature {
   icon: React.ElementType;
-  title: string;
-  description?: string; // Description below the grid of icons
+  displayTitle: string; // Title shown below icon by default
+  overlayTitle: string; // Title for the overlay box
+  description: string; // Description for the overlay box
+  id: string; // Unique ID for keys
 }
 
 const CompareAllPackagesPage: React.FC = () => {
@@ -67,27 +70,32 @@ const CompareAllPackagesPage: React.FC = () => {
     },
   ];
 
-  const commonFeatures: CommonFeature[] = [
-    { icon: Zap, title: "Dedicated Fiber per customer" },
-    { icon: Gauge, title: "Superior Peak Hour Performance" },
-    { icon: UploadCloud, title: "Superior Upload Speed" },
-    { icon: Gamepad2, title: "Lag Free Gaming" },
-    {
-      icon: MonitorSmartphone,
-      title: "HD Streaming and High Speed Access to Popular Contents",
-    },
-    {
-      icon: Share2,
-      title: "No Compression, Non Blocking File Sharing and Torrent",
-    },
-    { icon: UserCheck, title: "Dedicated Account Manager" },
-    { icon: ShieldCheck, title: "24/7 Network Monitoring and Support" },
-  ];
+  const commonFeaturesList: Array<{ icon: React.ElementType; title: string }> =
+    [
+      { icon: Zap, title: "Dedicated Fiber per customer" },
+      { icon: Gauge, title: "Superior Peak Hour Performance" },
+      { icon: UploadCloud, title: "Superior Upload Speed" },
+      { icon: Gamepad2, title: "Lag Free Gaming" },
+      {
+        icon: MonitorSmartphone,
+        title: "HD Streaming & High Speed Access",
+      },
+      {
+        icon: Share2,
+        title: "No Compression, Non Blocking",
+      },
+      { icon: UserCheck, title: "Dedicated Account Manager" },
+      { icon: ShieldCheck, title: "24/7 Network Monitoring" },
+    ];
 
-  const featureDescriptions: CommonFeature[] = [
+  const featureDescriptionsList: Array<{
+    icon: React.ElementType;
+    title: string;
+    description?: string;
+  }> = [
     {
-      icon: Zap, // Not strictly needed here as icons are above, but helps map
-      title: "Active Ethernet Connection", // Title for the description block
+      icon: Zap,
+      title: "Active Ethernet Connection",
       description:
         "With SINET's Active Ethernet, you get a direct fiber connection from our network, providing you with fast, stable, and symmetrical speeds of up to 1 Gbps for both downloads and uploads.",
     },
@@ -135,6 +143,24 @@ const CompareAllPackagesPage: React.FC = () => {
     },
   ];
 
+  const [hoveredFeatureIndex, setHoveredFeatureIndex] = useState<number | null>(
+    null
+  );
+
+  const detailedCommonFeatures: DetailedCommonFeature[] =
+    commonFeaturesList.map((cf, index) => {
+      const descFeature = featureDescriptionsList[index];
+      return {
+        icon: cf.icon,
+        displayTitle: cf.title,
+        overlayTitle: descFeature.title,
+        description: descFeature.description || "Details not available.",
+        id: `common-feature-${index}-${cf.title
+          .toLowerCase()
+          .replace(/\s+/g, "-")}`,
+      };
+    });
+
   const scrollToSignUp = (packageName?: string) => {
     const signUpSection = document.getElementById("signup-form");
     if (signUpSection) {
@@ -143,7 +169,6 @@ const CompareAllPackagesPage: React.FC = () => {
         "package-select"
       ) as HTMLSelectElement | null;
       if (packageSelect && packageName) {
-        // Attempt to select the package if a name is provided
         const optionToSelect = Array.from(packageSelect.options).find((opt) =>
           opt.value.includes(packageName)
         );
@@ -234,7 +259,7 @@ const CompareAllPackagesPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Common Features Section */}
+        {/* Common Features Section - UPDATED */}
         <section className="py-12 md:py-16 bg-emerald-50 overflow-hidden">
           <div className="container mx-auto px-4">
             <AnimatedSection yOffset={30} className="text-center">
@@ -244,36 +269,49 @@ const CompareAllPackagesPage: React.FC = () => {
             </AnimatedSection>
 
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center mb-16">
-              {commonFeatures.map((feature, index) => (
-                <AnimatedSection
-                  key={index}
-                  delay={0.1 + index * 0.05}
-                  yOffset={20}
-                  className="flex flex-col items-center"
+              {detailedCommonFeatures.map((feature, index) => (
+                // Wrapper div to handle hover and layout
+                <div
+                  key={feature.id}
+                  className="flex flex-col items-center justify-start p-2 relative cursor-default min-h-[180px]"
+                  onMouseEnter={() => setHoveredFeatureIndex(index)}
+                  onMouseLeave={() => setHoveredFeatureIndex(null)}
                 >
-                  <div className="bg-black text-white p-4 rounded-full mb-3 shadow-md">
-                    <feature.icon className="h-8 w-8 md:h-10 md:w-10" />
-                  </div>
-                  <h4 className="text-sm md:text-base font-semibold text-gray-700">
-                    {feature.title}
-                  </h4>
-                </AnimatedSection>
-              ))}
-            </div>
+                  <AnimatedSection
+                    delay={0.1 + index * 0.05}
+                    yOffset={20}
+                    // className can be simplified if AnimatedSection doesn't need specific styling for this context
+                    // or keep its original intended classes if it does.
+                    // For this example, we assume AnimatedSection primarily handles the animation itself.
+                    className="w-full h-full" // Make AnimatedSection fill the wrapper if needed
+                  >
+                    {/* Default Icon and Title */}
+                    <div className="text-center">
+                      {" "}
+                      {/* This div might now be part of AnimatedSection's children */}
+                      <div className="bg-black text-white p-4 rounded-full mb-3 shadow-md inline-block">
+                        <feature.icon className="h-8 w-8 md:h-10 md:w-10" />
+                      </div>
+                      <h4 className="text-sm md:text-base font-semibold text-gray-700 px-1">
+                        {feature.displayTitle}
+                      </h4>
+                    </div>
+                  </AnimatedSection>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-              {featureDescriptions.map((desc, index) => (
-                <AnimatedSection
-                  key={desc.title}
-                  delay={0.3 + index * 0.05}
-                  yOffset={20}
-                  className="bg-teal-500 text-white p-5 rounded-lg shadow-md flex flex-col h-full"
-                >
-                  {/* Optional: If you want a title inside these boxes
-                  <h5 className="font-semibold mb-2 text-lg">{desc.title}</h5>
-                  */}
-                  <p className="text-sm leading-relaxed">{desc.description}</p>
-                </AnimatedSection>
+                  {/* Overlay with detailed title and description - position relative to the outer div */}
+                  {hoveredFeatureIndex === index && (
+                    <div className="absolute inset-0 bg-teal-500 text-white p-4 rounded-lg shadow-xl flex flex-col z-10 overflow-hidden">
+                      <h5 className="text-lg font-semibold mb-2 text-center flex-shrink-0">
+                        {feature.overlayTitle}
+                      </h5>
+                      <div className="overflow-y-auto flex-grow custom-scrollbar-overlay">
+                        <p className="text-sm leading-snug text-center">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -434,3 +472,25 @@ const CompareAllPackagesPage: React.FC = () => {
 };
 
 export default CompareAllPackagesPage;
+
+// Optional: Add to your global CSS file (e.g., src/app/globals.css) for custom scrollbars in the overlay
+/*
+.custom-scrollbar-overlay::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.custom-scrollbar-overlay {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.1);
+}
+*/

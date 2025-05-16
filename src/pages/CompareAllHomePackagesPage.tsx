@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"; // Added useState
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -25,16 +25,19 @@ interface PricingDetail {
   labelClass?: string;
 }
 
-interface CommonFeature {
+// Updated interface for combined feature data
+interface DetailedCommonFeature {
   icon: React.ElementType;
-  title: string;
-  description?: string;
+  displayTitle: string; // Title shown below icon by default
+  overlayTitle: string; // Title for the overlay box
+  description: string; // Description for the overlay box
+  id: string; // Unique ID for keys
 }
 
 const CompareAllHomePackagesPage: React.FC = () => {
   const pricingTableDetails: PricingDetail[] = [
     {
-      label: "HOME", // Changed from 'Home Internet' as per image
+      label: "HOME",
       fiberHome: "FIBER HOME",
       fiberPrime: "FIBER PRIME",
       sinetEco: "SINET-ECO",
@@ -168,73 +171,99 @@ const CompareAllHomePackagesPage: React.FC = () => {
     },
   ];
 
-  const commonFeatures: CommonFeature[] = [
-    { icon: Zap, title: "Dedicated Fiber per customer" },
-    { icon: Gauge, title: "Superior Peak Hour Performance" },
-    { icon: UploadCloud, title: "Superior Upload Speed" },
-    { icon: Gamepad2, title: "Lag Free Gaming" },
-    {
-      icon: MonitorSmartphone,
-      title: "HD Streaming and High Speed Access to Popular Contents",
-    },
-    {
-      icon: Share2,
-      title: "No Compression, Non Blocking File Sharing and Torrent",
-    },
-    { icon: UserCheck, title: "Dedicated Account Manager" },
-    { icon: ShieldCheck, title: "24/7 Network Monitoring and Support" },
-  ];
+  // Original data arrays (will be merged)
+  const commonFeaturesList: Array<{ icon: React.ElementType; title: string }> =
+    [
+      { icon: Zap, title: "Dedicated Fiber per customer" },
+      { icon: Gauge, title: "Superior Peak Hour Performance" },
+      { icon: UploadCloud, title: "Superior Upload Speed" },
+      { icon: Gamepad2, title: "Lag Free Gaming" },
+      {
+        icon: MonitorSmartphone,
+        title: "HD Streaming and High Speed Access", // Shortened for better display
+      },
+      {
+        icon: Share2,
+        title: "No Compression, Non Blocking", // Shortened
+      },
+      { icon: UserCheck, title: "Dedicated Account Manager" },
+      { icon: ShieldCheck, title: "24/7 Network Monitoring" }, // Shortened
+    ];
 
-  const featureDescriptions: CommonFeature[] = [
+  const featureDescriptionsList: Array<{
+    icon: React.ElementType;
+    title: string;
+    description?: string;
+  }> = [
     {
       description:
         "With SINET's Active Ethernet, you get a direct fiber connection from our network, providing you with fast, stable, and symmetrical speeds of up to 1 Gbps for both downloads and uploads.",
       icon: Zap,
-      title: "", // Title not needed as per image layout
+      title: "Active Ethernet Connection", // Adding titles for overlay, can be same as commonFeaturesList title
     },
     {
       description:
         "With SINET internet, you'll always experience reliable speeds, no matter the time or day. Thanks to our backup systems and smart traffic management, we ensure full bandwidth even during peak hours from 7 PM to 11 PM.",
       icon: Gauge,
-      title: "",
+      title: "Reliable Speeds",
     },
     {
       description:
         "With symmetrical bandwidth, SINET customers can quickly upload photos, share files, and interact on social media, all thanks to the fast upload speeds that only Active Ethernet technology can provide.",
       icon: UploadCloud,
-      title: "",
+      title: "Symmetrical Bandwidth",
     },
     {
       description:
         "With direct connections to International operators and Gaming Hubs in Hong Kong, Singapore, & Europe, SINET users get to enjoy ultra low-latency and lag-free gaming experience end-to-end.",
       icon: Gamepad2,
-      title: "",
+      title: "International Gaming",
     },
     {
       description:
         "SINET connects to both local and global networks, giving customers smooth HD video streaming and easy access to popular services like YouTube, Netflix, and more.",
       icon: MonitorSmartphone,
-      title: "",
+      title: "Global Network Access",
     },
     {
       description:
         "SINET never compresses customer traffic to save bandwidth. We provide clear, direct IP connectivity to the internet, with no throttling on file sharing, torrents, or any specific apps.",
       icon: Share2,
-      title: "",
+      title: "Uncompressed Traffic",
     },
     {
       description:
         "Each customer will be cared by Dedicated Account Executive regardless of which package you subscribe.",
       icon: UserCheck,
-      title: "",
+      title: "Dedicated Account Executive",
     },
     {
       description:
         "SINET dedicated Tech support team work around the clock to monitor the network and support any issues you may have either by phone or email.",
       icon: ShieldCheck,
-      title: "",
+      title: "Dedicated Tech Support",
     },
   ];
+
+  // State to track hovered feature index
+  const [hoveredFeatureIndex, setHoveredFeatureIndex] = useState<number | null>(
+    null
+  );
+
+  // Merge commonFeatures and featureDescriptions
+  const detailedCommonFeatures: DetailedCommonFeature[] =
+    commonFeaturesList.map((cf, index) => {
+      const descFeature = featureDescriptionsList[index]; // Assuming lists are in corresponding order
+      return {
+        icon: cf.icon,
+        displayTitle: cf.title, // Title shown below icon
+        overlayTitle: descFeature.title || cf.title, // Title for the overlay, fallback to cf.title
+        description: descFeature.description || "Details not available.",
+        id: `common-feature-home-${index}-${cf.title
+          .toLowerCase()
+          .replace(/\s+/g, "-")}`,
+      };
+    });
 
   const scrollToSignUp = (planName?: string) => {
     const signUpSection = document.getElementById("signup-form-all-home");
@@ -244,9 +273,13 @@ const CompareAllHomePackagesPage: React.FC = () => {
         "package-select-all-home"
       ) as HTMLSelectElement | null;
       if (packageSelect && planName) {
+        // Try to match the plan name format from the buttons: "FIBER HOME", "FIBER PRIME", etc.
+        // The button passes the plan name directly.
         const optionToSelect = Array.from(packageSelect.options).find((opt) =>
-          opt.value.includes(planName.split(" - ")[0])
-        ); // Match by base name like 'FIBER HOME'
+          opt.value
+            .toUpperCase()
+            .startsWith(planName.toUpperCase().split(" - ")[0])
+        );
         if (optionToSelect) {
           packageSelect.value = optionToSelect.value;
         }
@@ -261,21 +294,14 @@ const CompareAllHomePackagesPage: React.FC = () => {
       <main className="flex-1">
         {/* Pricing Table Section */}
         <section className="py-12 md:py-16 bg-sky-100">
-          {" "}
-          {/* Light blue background */}
           <div className="container mx-auto px-4">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 md:mb-12">
               FEATURES AND PRICING
             </h1>
             <div className="max-w-6xl mx-auto shadow-xl rounded-lg overflow-hidden">
-              {" "}
-              {/* Increased max-width for 5 plans */}
               <div className="grid grid-cols-[1.5fr_repeat(5,_1fr)] md:grid-cols-[minmax(150px,_1.5fr)_repeat(5,_1fr)] bg-white text-sm">
-                {" "}
-                {/* 6 columns total */}
                 {pricingTableDetails.map((detail, index) => (
                   <React.Fragment key={index}>
-                    {/* Label Column */}
                     <div
                       className={`p-2 md:p-3 border-b border-r border-gray-200 flex items-center 
                         ${
@@ -314,8 +340,6 @@ const CompareAllHomePackagesPage: React.FC = () => {
                         ""
                       )}
                     </div>
-
-                    {/* Plan Columns */}
                     {[
                       "fiberHome",
                       "fiberPrime",
@@ -367,10 +391,12 @@ const CompareAllHomePackagesPage: React.FC = () => {
                           <Button
                             onClick={() =>
                               scrollToSignUp(
-                                String(detail[planKey as keyof PricingDetail])
+                                pricingTableDetails.find((d) => d.isHeader)?.[
+                                  planKey as keyof PricingDetail
+                                ] as string
                               )
                             }
-                            className="bg-teal-500 hover:bg-teal-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-md text-xs md:text-sm"
+                            className="bg-teal-500 hover:bg-teal-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-md text-xs md:text-md"
                           >
                             ORDER NOW
                           </Button>
@@ -386,41 +412,48 @@ const CompareAllHomePackagesPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Common Features Section */}
+        {/* Common Features Section - UPDATED */}
         <section className="py-12 md:py-16 bg-sky-100">
-          {" "}
-          {/* Matching pricing table background */}
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
               COMMON FEATURES
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center mb-16 max-w-4xl mx-auto">
-              {commonFeatures.map((feature, index) => (
-                <div // Not using AnimatedSection here to match other pages' structure
-                  key={index}
-                  className="flex flex-col items-center"
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 text-center mb-16 max-w-8xl mx-auto">
+              {detailedCommonFeatures.map((feature, index) => (
+                <div
+                  key={feature.id}
+                  className="flex flex-col items-center justify-start p-2 relative cursor-default min-h-[180px]" // Added relative, min-height
+                  onMouseEnter={() => setHoveredFeatureIndex(index)}
+                  onMouseLeave={() => setHoveredFeatureIndex(null)}
                 >
-                  <div className="bg-black text-white p-4 rounded-full mb-3 shadow-md">
-                    <feature.icon className="h-8 w-8 md:h-10 md:w-10" />
+                  {/* Default Icon and Title */}
+                  <div className="text-center">
+                    <div className="bg-black text-white p-4 rounded-full mb-3 shadow-md inline-block">
+                      <feature.icon className="h-8 w-8 md:h-10 md:w-10" />
+                    </div>
+                    <h4 className="text-sm md:text-base font-semibold text-gray-700 px-1">
+                      {feature.displayTitle}
+                    </h4>
                   </div>
-                  <h4 className="text-sm md:text-base font-semibold text-gray-700">
-                    {feature.title}
-                  </h4>
-                </div>
-              ))}
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 max-w-6xl mx-auto">
-              {featureDescriptions.map((desc, index) => (
-                <div // Not using AnimatedSection
-                  key={index} // Changed key to index as title is empty
-                  className="bg-teal-500 text-white p-5 rounded-lg shadow-md flex flex-col h-full min-h-[180px] md:min-h-[150px]" // Added min-height
-                >
-                  <p className="text-sm leading-relaxed">{desc.description}</p>
+                  {/* Overlay with detailed title and description */}
+                  {hoveredFeatureIndex === index && (
+                    <div className="absolute inset-0 bg-teal-500 text-white p-4 rounded-lg shadow-xl flex flex-col z-10 overflow-hidden">
+                      <h5 className="text-lg font-semibold mb-2 text-center flex-shrink-0">
+                        {feature.overlayTitle}
+                      </h5>
+                      <div className="overflow-y-auto flex-grow custom-scrollbar-overlay">
+                        <p className="text-sm leading-snug text-center">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
+            {/* The old featureDescriptions grid is now REMOVED */}
           </div>
         </section>
 
@@ -450,13 +483,19 @@ const CompareAllHomePackagesPage: React.FC = () => {
                     <option value="FIBER PRIME - 30 Mbps">
                       FIBER PRIME - 30 Mbps
                     </option>
-                    <option value="SINET-ECO - 20 Mbps Global">
+                    <option value="SINET-ECO - 20 Mbps">
+                      {" "}
+                      {/* Simplified for matching */}
                       SINET-ECO (20G Global)
                     </option>
-                    <option value="SINET-PREMIUM - 30 Mbps Global">
+                    <option value="SINET-PREMIUM - 30 Mbps">
+                      {" "}
+                      {/* Simplified for matching */}
                       SINET-PREMIUM (30G Global)
                     </option>
-                    <option value="SINET-FIRST CLASS - 40 Mbps Global">
+                    <option value="SINET-FIRST CLASS - 40 Mbps">
+                      {" "}
+                      {/* Simplified for matching */}
                       SINET-FIRST CLASS (40G Global)
                     </option>
                     <option value="General Inquiry">
@@ -465,7 +504,6 @@ const CompareAllHomePackagesPage: React.FC = () => {
                   </select>
                 </div>
 
-                {/* ... (rest of the form fields: Name, Phone, Email, Address, Comment) ... */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                   <div>
                     <label
@@ -583,3 +621,25 @@ const CompareAllHomePackagesPage: React.FC = () => {
 };
 
 export default CompareAllHomePackagesPage;
+
+// Optional: Add to your global CSS file (e.g., src/app/globals.css) for custom scrollbars in the overlay
+/*
+.custom-scrollbar-overlay::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+.custom-scrollbar-overlay::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.custom-scrollbar-overlay {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.1);
+}
+*/
