@@ -12,6 +12,7 @@ import {
   Globe,
   Landmark,
 } from "lucide-react";
+import BusinessPackages from "@/components/BusinessPackages";
 
 interface Plan {
   name: string;
@@ -26,6 +27,9 @@ interface BestForItem {
   name: string[];
   icon: React.ElementType;
 }
+
+const NAVBAR_HEIGHT_OFFSET = "80px"; // Adjust this value based on your actual Navbar height
+const currentPackageLink = "/dia"; // The link of the package this page is about
 
 const DiaPage: React.FC = () => {
   const plans: Plan[] = [
@@ -59,7 +63,6 @@ const DiaPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Navbar />
-
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="py-12 md:py-16 bg-gradient-to-b from-teal-100 via-emerald-50 to-sky-50 overflow-hidden">
@@ -355,7 +358,7 @@ const DiaPage: React.FC = () => {
           </div>
         </div>
       </main>
-
+      <BusinessPackages navbarOffset="80px" gridCols={3} excludeLink="/dia" />
       <Footer />
     </div>
   );

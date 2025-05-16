@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HomePackages from "@/components/HomePackages";
 
 interface Feature {
   text: string;
@@ -459,6 +460,12 @@ const FiberFirstClassPage: React.FC = () => {
           </div>
         </section> */}
       </main>
+
+      <HomePackages
+        navbarOffset="80px"
+        gridCols={3}
+        excludeLink="/first-class"
+      />
 
       <Footer />
     </div>

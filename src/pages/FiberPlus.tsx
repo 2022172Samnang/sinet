@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,6 +6,7 @@ import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import SignUpForm from "@/components/SignUpForm";
 import ContactForm from "@/components/ContactForm";
+import BusinessPackages from "@/components/BusinessPackages";
 
 const FiberPlus = () => {
   const features = [
@@ -69,12 +69,17 @@ const FiberPlus = () => {
 
         {/* Sign Up Section */}
         <div id="signup">
-          <SignUpForm 
-            packageOptions={packageOptions} 
+          <SignUpForm
+            packageOptions={packageOptions}
             selectedPackage="fiber-plus-120mbps"
           />
         </div>
       </div>
+      <BusinessPackages
+        navbarOffset="80px"
+        gridCols={3}
+        excludeLink="/fiber-plus"
+      />
 
       <Footer />
     </div>

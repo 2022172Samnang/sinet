@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import BusinessPackages from "@/components/BusinessPackages";
 
 const FiberEdge = () => {
   return (
@@ -160,6 +161,11 @@ const FiberEdge = () => {
             </div>
           </div>
         </section> */}
+        <BusinessPackages
+          navbarOffset="80px"
+          gridCols={3}
+          excludeLink="/fiber-edge"
+        />
       </main>
 
       <Footer />

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SignUpForm from "@/components/SignUpForm";
+import HomePackages from "@/components/HomePackages";
 
 interface Feature {
   text: string;
@@ -232,12 +233,14 @@ const FiberPrimePage: React.FC = () => {
 
         {/* Sign Up Section */}
         <div id="signup-form">
-          <SignUpForm 
-            packageOptions={packageOptions}
-            className="bg-sky-50"
-          />
+          <SignUpForm packageOptions={packageOptions} className="bg-sky-50" />
         </div>
       </main>
+      <HomePackages
+        navbarOffset="80px"
+        gridCols={3}
+        excludeLink="/fiber-prime"
+      />
 
       <Footer />
     </div>
