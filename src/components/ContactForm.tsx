@@ -21,7 +21,7 @@ const ContactForm = () => {
           `px-4` for standard horizontal padding. Adjusted from px-12 for more typical spacing.
           You can use `max-w-7xl` or other max-width if `container` isn't specific enough.
         */}
-        <div className="container mx-auto px-4 md:ml-32 w-full">
+        <div className="container mx-auto px-4 lg:pl-48 w-full">
           <div className="grid md:grid-cols-2 gap-x-12 lg:gap-x-24 md:items-start">
             {" "}
             {/* Use gap-x for horizontal gap */}
