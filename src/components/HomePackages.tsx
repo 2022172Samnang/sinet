@@ -41,7 +41,7 @@ const HomePackages: React.FC<HomePackagesProps> = ({
       title: "Compare All Packages",
       description: "Find the perfect home internet package for your needs.",
       link: "/home-internet/compare-all",
-      imagePath: "assets/internet_solutions/all-business-packages.png", // Note: Path seems to point to a business-related image, ensure this is intended.
+      imagePath: "assets/internet_solutions/compare-all-packages.png", // Note: Path seems to point to a business-related image, ensure this is intended.
       isActionCard: true, // Mark this as an action card to hide the button in ServicePackage
     },
   ];

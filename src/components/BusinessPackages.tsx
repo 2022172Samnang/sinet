@@ -45,7 +45,7 @@ const BusinessPackages: React.FC<BusinessPackagesProps> = ({
       description:
         "Compare all our business packages and find the perfect solution for your company.",
       link: "/compare-all-packages",
-      imagePath: "assets/internet_solutions/compare-all-packages.png",
+      imagePath: "assets/internet_solutions/all-business-packages.png",
     },
   ];
 
