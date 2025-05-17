@@ -44,7 +44,7 @@ const Navbar = () => {
     leaveTimeoutRef.current = setTimeout(
       () => setActiveDesktopCategory(null),
       300
-    ); // Slightly increased delay
+    );
   };
 
   const handleMouseEnterSubMenu = () => {
@@ -56,13 +56,20 @@ const Navbar = () => {
     if (isMobileMenuOpen) setIsMobileMenuOpen(false);
   };
 
+  // --- MODIFIED: internetSolutionsLinks with PNG paths ---
+  // Ensure you have these images in your `public/icons/` folder
+  // or adjust paths accordingly.
   const internetSolutionsLinks = [
     {
       to: "/#business-internet",
       label: "Business Internet",
-      icon: <Building />,
+      icon: "assets/icons/business.png", // Example: Path to your PNG
     },
-    { to: "/#home-internet", label: "Home Internet", icon: <Zap /> },
+    {
+      to: "/#home-internet",
+      label: "Home Internet",
+      icon: "assets/icons/home.png", // Example: Path to your PNG
+    },
   ];
 
   const enterpriseSolutionsLinks = [
@@ -152,18 +159,16 @@ const Navbar = () => {
       ) || "/";
 
     if ((path === "" || path === "/") && currentPath === "/") {
-      // Check if target is root and current is root
       if (hash) {
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
-          // Add offset for sticky navbar
           const navbarHeight = navRef.current?.offsetHeight || 0;
           if (navbarHeight > 0) {
             const elementPosition =
               element.getBoundingClientRect().top + window.scrollY;
             window.scrollTo({
-              top: elementPosition - navbarHeight - 20, // 20px extra padding
+              top: elementPosition - navbarHeight - 20,
               behavior: "smooth",
             });
           }
@@ -176,26 +181,31 @@ const Navbar = () => {
 
   const renderHorizontalSubMenuItem = (link, index) => {
     const commonItemClasses =
-      "flex flex-col items-center text-center group p-3 rounded-md hover:bg-black/10 min-w-[120px] max-w-[160px]"; // Adjusted min/max width, padding
+      "flex flex-col items-center text-center group p-3 rounded-md hover:bg-black/10 min-w-[120px] max-w-[160px]";
 
-    // --- CHANGED icon styling ---
-    const iconElement = React.cloneElement(link.icon, {
-      className: "w-8 h-8 mb-2 text-black", // Icon color black, adjusted size/margin
-    });
+    // --- MODIFIED: Logic to render icon (PNG or Lucide) ---
+    let iconElement;
+    if (typeof link.icon === "string") {
+      // It's a path to an image
+      iconElement = (
+        <img src={link.icon} alt={link.label} className="w-8 h-8 mb-2" />
+      );
+    } else if (React.isValidElement(link.icon)) {
+      // It's a React component (e.g., Lucide icon)
+      iconElement = React.cloneElement(link.icon, {
+        className: "w-8 h-8 mb-2 text-black",
+      });
+    }
+    // --- End of MODIFIED icon rendering logic ---
 
-    // --- CHANGED label styling ---
     const labelElement = (
       <span className="text-sm font-medium text-black leading-tight whitespace-nowrap">
-        {" "}
-        {/* Text black, ensure no wrap */}
         {link.label}
       </span>
     );
 
     const descriptionElement = link.description && (
       <span className="text-[10px] text-gray-700 mt-0.5">
-        {" "}
-        {/* Darker gray for description if any */}
         {link.description}
       </span>
     );
@@ -242,7 +252,7 @@ const Navbar = () => {
 
   return (
     <nav
-      ref={navRef} // Added ref here
+      ref={navRef}
       className="sticky top-0 z-50 bg-white shadow-sm"
       onMouseLeave={handleMouseLeaveNavArea}
     >
@@ -272,7 +282,6 @@ const Navbar = () => {
                       currentPath === "/"
                     ) {
                       // Allow default hash scroll if any sub-item will be clicked, or just stay on page.
-                      // Do not close menu immediately if hovering over for sub-menu.
                     } else {
                       closeAllMenus();
                     }
@@ -283,17 +292,14 @@ const Navbar = () => {
                 </Link>
               </div>
             ))}
-            {/* Ensure your sinet-dark/darkest/light are defined in tailwind.config.js */}
             <Link to="/contact" onClick={closeAllMenus}>
               <Button className="bg-teal-600 hover:bg-teal-700 text-white ml-2 lg:ml-3 px-4 py-2 text-sm">
-                {" "}
-                {/* Using teal as placeholder */}
                 Sign Up
               </Button>
             </Link>
             <Button
               variant="outline"
-              className="border-teal-600 text-teal-600 hover:bg-teal-50 px-3 py-2 text-sm" /* Using teal as placeholder */
+              className="border-teal-600 text-teal-600 hover:bg-teal-50 px-3 py-2 text-sm"
               onClick={closeAllMenus}
             >
               Kh
@@ -302,7 +308,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
-              className="text-gray-700 focus:outline-none focus:text-teal-600 p-2" /* Using teal as placeholder */
+              className="text-gray-700 focus:outline-none focus:text-teal-600 p-2"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -318,13 +324,11 @@ const Navbar = () => {
         activeDesktopCategory.subLinks &&
         activeDesktopCategory.subLinks.length > 0 && (
           <div
-            className="hidden md:block absolute top-full left-0 right-0 w-full bg-teal-500 shadow-xl z-40" // Main teal background for submenu bar
+            className="hidden md:block absolute top-full left-0 right-0 w-full bg-teal-500 shadow-xl z-40"
             onMouseEnter={handleMouseEnterSubMenu}
             onMouseLeave={handleMouseLeaveNavArea}
           >
             <div className="container mx-auto flex justify-center items-start flex-wrap gap-x-2 sm:gap-x-3 lg:gap-x-4 gap-y-2 px-4 py-4">
-              {" "}
-              {/* Adjusted padding and gaps */}
               {activeDesktopCategory.subLinks.map((subLink, index) =>
                 renderHorizontalSubMenuItem(subLink, index)
               )}
@@ -348,7 +352,7 @@ const Navbar = () => {
                     item.label === "Internet Solutions" &&
                     currentPath === "/"
                   ) {
-                    // Allow default behavior for Link to handle hash on same page
+                    // Allow default behavior
                   } else {
                     closeAllMenus();
                   }
@@ -359,9 +363,23 @@ const Navbar = () => {
               </Link>
               <div className="ml-3 mt-1 mb-2 flex flex-col space-y-0.5 bg-gray-50 rounded-md p-2">
                 {item.subLinks.map((link, index) => {
-                  const mobileIcon = React.cloneElement(link.icon, {
-                    className: "w-4 h-4 text-gray-600",
-                  });
+                  // --- MODIFIED: Logic to render mobile icon (PNG or Lucide) ---
+                  let mobileIconElement;
+                  if (typeof link.icon === "string") {
+                    mobileIconElement = (
+                      <img
+                        src={link.icon}
+                        alt={link.label}
+                        className="w-4 h-4"
+                      />
+                    );
+                  } else if (React.isValidElement(link.icon)) {
+                    mobileIconElement = React.cloneElement(link.icon, {
+                      className: "w-4 h-4 text-gray-600",
+                    });
+                  }
+                  // --- End of MODIFIED mobile icon rendering logic ---
+
                   if (link.to && link.to.includes("#")) {
                     return (
                       <button
@@ -370,7 +388,7 @@ const Navbar = () => {
                         onClick={() => handleHashLinkClick(link.to)}
                         className="flex items-center space-x-2.5 px-3 py-1.5 text-gray-700 hover:bg-gray-100 rounded text-sm w-full text-left"
                       >
-                        {mobileIcon}
+                        {mobileIconElement}
                         <span>{link.label}</span>
                       </button>
                     );
@@ -384,7 +402,7 @@ const Navbar = () => {
                       onClick={closeAllMenus}
                       className="flex items-center space-x-2.5 px-3 py-1.5 text-gray-700 hover:bg-gray-100 rounded text-sm"
                     >
-                      {mobileIcon}
+                      {mobileIconElement}
                       <span>{link.label}</span>
                     </a>
                   ) : (
@@ -394,7 +412,7 @@ const Navbar = () => {
                       onClick={closeAllMenus}
                       className="flex items-center space-x-2.5 px-3 py-1.5 text-gray-700 hover:bg-gray-100 rounded text-sm"
                     >
-                      {mobileIcon}
+                      {mobileIconElement}
                       <span>{link.label}</span>
                     </Link>
                   );
@@ -404,8 +422,6 @@ const Navbar = () => {
           ))}
           <div className="px-4 pt-2 pb-3 flex space-x-2">
             <Link to="/contact" onClick={closeAllMenus}>
-              {" "}
-              {/* Corrected to /contact */}
               <Button className="bg-teal-600 hover:bg-teal-700 text-white">
                 Sign Up
               </Button>
