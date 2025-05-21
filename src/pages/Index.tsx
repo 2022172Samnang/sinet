@@ -8,9 +8,10 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 // Import the new components
-import BusinessPackages from "@/components/BusinessPackages";
-import HomePackages from "@/components/HomePackages";
-import EnterprisePackages from "@/components/EnterprisePackages";
+// import BusinessPackages from "@/components/BusinessPackages";
+// import HomePackages from "@/components/HomePackages";
+// import EnterprisePackages from "@/components/EnterprisePackages";
+import InternetPackages from "@/components/InternetPackages";
 
 // Assuming Navbar height is roughly 64px (h-16 in Navbar.tsx)
 // You can make this a constant or pass it as a prop if it changes.
@@ -22,9 +23,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       {/* <CategorySelector /> */}
-      <BusinessPackages navbarOffset={NAVBAR_HEIGHT_OFFSET} />
-      <HomePackages navbarOffset={NAVBAR_HEIGHT_OFFSET} />
-      <EnterprisePackages /> {/* This section didn't have the offset logic */}
+      <InternetPackages navbarOffset={NAVBAR_HEIGHT_OFFSET} />
       <ContactForm />
       <Footer />
     </div>
