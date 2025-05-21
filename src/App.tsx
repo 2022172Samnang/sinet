@@ -37,7 +37,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/sinet/">
         <ScrollToTop /> {/* Add the custom ScrollToTop component here */}
         <Routes>
           <Route path="/" element={<Index />} />
