@@ -14,7 +14,10 @@ const ContactForm = () => {
 
   return (
     <>
-      <div className="bg-sinet-light bg-opacity-30 flex flex-col items-center justify-center min-h-screen py-16">
+      <div
+        id="contact"
+        className="bg-sinet-light bg-opacity-30 flex flex-col items-center justify-center min-h-screen py-16"
+      >
         {/* 
           Using `container` for responsive max-width. 
           `mx-auto` for horizontal centering.
