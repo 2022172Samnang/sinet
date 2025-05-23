@@ -112,13 +112,13 @@ const TechnicalSupport: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-teal-50 min-h-screen py-12">
+      <div className="bg-teal-50  min-h-screen py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
             CUSTOMER SUPPORT
           </h1>
 
-          <div className="bg-white p-6 md:p-8 rounded-xl shadow-xl mb-16">
+          <div className="bg-teal-50 p-6 md:p-8 rounded-xl mb-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
               {/* Left Column: Intro Paragraph + Form */}
               <div>
