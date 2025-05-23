@@ -1,28 +1,25 @@
 import React from "react";
-import Logo from "./Logo";
 import { Link } from "react-router-dom";
+// Logo import is removed as it's not used in the updated footer
 
 const Footer = () => {
   return (
     <footer className="bg-teal-500 text-white pt-12 pb-6 border-t">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
+          {/* Column 1: About SINET */}
           <div>
-            <Link to="/" className="flex items-center">
-              <div className="flex items-center">
-                <img
-                  className="w-32 h-18"
-                  src="assets/sinet_logo_white.png"
-                  alt=""
-                />
-              </div>
-            </Link>
-            <p className="mt-4">
-              Leading Internet Service Provider in Cambodia offering high-speed
-              fiber internet for home and business.
+            <h3 className="text-lg font-bold text-white mb-4">About SINET</h3>
+            <p className="text-sm">
+              {" "}
+              {/* Adjusted font size for potentially longer text */}
+              We are a Specialist Dedicated Internet Service Provider with
+              strong focus on Engineering excellence and customer service since
+              2009.
             </p>
           </div>
 
+          {/* Column 2: Internet Solutions */}
           <div>
             <h3 className="text-lg font-bold text-white mb-4">
               Internet Solutions
@@ -30,7 +27,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  to="/business-internet"
+                  to="/#business-internet" // Assuming hash link to section on homepage
                   className="text-white hover:text-black"
                 >
                   Business Internet
@@ -38,30 +35,29 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/home-internet"
+                  to="/#home-internet" // Assuming hash link to section on homepage
                   className="text-white hover:text-black"
                 >
                   Home Internet
                 </Link>
               </li>
-              <li>
-                <Link to="/fiber-edge" className="text-white hover:text-black">
-                  Fiber Edge
-                </Link>
-              </li>
-              <li>
-                <Link to="/fiber-plus" className="text-white hover:text-black">
-                  Fiber Plus
-                </Link>
-              </li>
             </ul>
           </div>
 
+          {/* Column 3: Enterprise Solutions */}
           <div>
             <h3 className="text-lg font-bold text-white mb-4">
               Enterprise Solutions
             </h3>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/enterprise-solution/dplc"
+                  className="text-white hover:text-black"
+                >
+                  DPLC
+                </Link>
+              </li>
               <li>
                 <Link
                   to="/enterprise-solution/iplc"
@@ -72,61 +68,84 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/enterprise-solution/hardware-sales"
+                  to="/enterprise-solution/ip-transit"
                   className="text-white hover:text-black"
                 >
-                  Hardware Sales
+                  IP Transit
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/network-security"
+                  to="/enterprise-solution/virtual-private-server"
                   className="text-white hover:text-black"
                 >
-                  Network Security
+                  Virtual Private Server
                 </Link>
               </li>
               <li>
-                <Link to="/dia" className="text-white hover:text-black">
-                  DDoS Protection
-                </Link>
+                <a
+                  href="https://www.chaktomuk-dc.com.kh/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-black"
+                >
+                  Data Center
+                </a>
               </li>
             </ul>
           </div>
 
+          {/* Column 4: Customer Service */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Company</h3>
+            <h3 className="text-lg font-bold text-white mb-4">
+              Customer Service
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/about-us/company-profile"
-                  className="text-white hover:text-black"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about-us/our-network"
-                  className="text-white hover:text-black"
-                >
-                  Our Network
-                </Link>
-              </li>
               <li>
                 <Link
                   to="/customer-service/technical-support"
                   className="text-white hover:text-black"
                 >
-                  Customer Services
+                  Technical Support
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: About Us */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4">About Us</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/about-us/company-profile" // Mapped from "Company Overview"
+                  className="text-white hover:text-black"
+                >
+                  Company Overview
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/customer-service/payment-options"
+                  to="/about-us/our-network" // Mapped from "Network Coverage"
                   className="text-white hover:text-black"
                 >
-                  Payment Options
+                  Network Coverage
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about-us/why-sinet"
+                  className="text-white hover:text-black"
+                >
+                  Why SINET?
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about-us/our-clients" // New item, assuming path
+                  className="text-white hover:text-black"
+                >
+                  Our Clients
                 </Link>
               </li>
               <li>
@@ -134,12 +153,7 @@ const Footer = () => {
                   to="/about-us/careers"
                   className="text-white hover:text-black"
                 >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-white hover:text-black">
-                  Contact
+                  Career
                 </Link>
               </li>
             </ul>
