@@ -1,11 +1,6 @@
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Footer from "@/components/Footer";
-// Imports for Navbar, Footer, ChevronDown, ChevronUp, ContactForm are kept as in your original code
-// but are not used in this specific component's rendering based on the screenshot.
-// If they are used elsewhere or intended for future use, they can remain.
-// import Navbar from "@/components/Navbar";
-// import Footer from "@/components/Footer";
 // import { ChevronDown, ChevronUp } from "lucide-react";
 // import ContactForm from "@/components/ContactForm";
 
@@ -117,18 +112,20 @@ const TechnicalSupport: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-teal-50 min-h-screen py-12">
+      {/* Changed bg-teal-50 to bg-white here */}
+      <div className="bg-white min-h-screen py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
             CUSTOMER SUPPORT
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-16">
+            {/* Left Column: Form */}
             <div>
-              <p className="text-gray-700 mb-2">
+              <p className="text-gray-700 mb-4">
                 Please leave your question or comment here and we will get back
                 to you as soon as possible.
               </p>
-              <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
                 <textarea
                   className="w-full h-32 p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Your question or comment..."
@@ -138,37 +135,42 @@ const TechnicalSupport: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                  Sales
-                </h2>
-                <p className="text-gray-700">Tel: (+855) 81 801 999</p>
-                <p className="text-gray-700">Email: sales@sinet.com.kh</p>
-                <p className="text-gray-700">Whatsapp: +855 81 801 999</p>
-                <p className="text-gray-700">Telegram: https://t.me/SINET_KH</p>
-              </div>
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                  Billing
-                </h2>
-                <p className="text-gray-700">Tel: (+855) 81 301 999</p>
-                <p className="text-gray-700">Email: billing@sinet.com.k</p>{" "}
-                {/* Note: Matches screenshot (potential typo .k instead of .kh) */}
-              </div>
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                  Technical Support
-                </h2>
-                <p className="text-gray-700">Tel: (+855) 81 901 999</p>
-                <p className="text-gray-700">Email: support@sinet.com.kh</p>
-                <p className="text-gray-700">Telegram: +855 81 901 999</p>
+            {/* Right Column: Contact Details */}
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                    Sales
+                  </h2>
+                  <p className="text-gray-700">Tel: (+855) 81 801 999</p>
+                  <p className="text-gray-700">Email: sales@sinet.com.kh</p>
+                  <p className="text-gray-700">Whatsapp: +855 81 801 999</p>
+                  <p className="text-gray-700">
+                    Telegram: https://t.me/SINET_KH
+                  </p>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                    Billing
+                  </h2>
+                  <p className="text-gray-700">Tel: (+855) 81 301 999</p>
+                  <p className="text-gray-700">Email: billing@sinet.com.k</p>
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+                    Technical Support
+                  </h2>
+                  <p className="text-gray-700">Tel: (+855) 81 901 999</p>
+                  <p className="text-gray-700">Email: support@sinet.com.kh</p>
+                  <p className="text-gray-700">Telegram: +855 81 901 999</p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-20">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          {/* FAQ Section with white background */}
+          <div className="bg-white p-6 md:p-8 rounded-xl shadow-xl">
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-10 md:mb-12">
               FREQUENTLY ASKED QUESTIONS
             </h2>
             <div className="space-y-4">
@@ -180,10 +182,10 @@ const TechnicalSupport: React.FC = () => {
                     aria-expanded={openFAQ === faq.id}
                   >
                     <span>{`${faq.id}. ${faq.question}`}</span>
-                    {/* Chevron icons (ChevronUp/ChevronDown) can be added here if desired, e.g.:
-                  {openFAQ === faq.id ? <ChevronUp className="h-5 w-5 text-white" /> : <ChevronDown className="h-5 w-5 text-white" />}
-                  For now, omitting to strictly match the visual of the screenshot which doesn't show them.
-                  */}
+                    {/* 
+                    You can add Chevron icons here if you have them imported and want them:
+                    {openFAQ === faq.id ? <ChevronUp className="h-5 w-5 text-white" /> : <ChevronDown className="h-5 w-5 text-white" />}
+                    */}
                   </button>
                   {openFAQ === faq.id && (
                     <div className="p-4 md:p-5 bg-teal-100 text-teal-800 rounded-b-lg">
