@@ -155,7 +155,7 @@ const InternetPackages: React.FC<InternetPackagesProps> = ({
       >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 md:mb-12 text-cyan-700">
-            OUR IP NETWORK
+            OUR NETWORK COVERAGE
           </h2>
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
             <p className="text-md md:text-lg text-gray-700 mb-4 leading-relaxed">
