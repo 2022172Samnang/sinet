@@ -119,7 +119,7 @@ const TechnicalSupport: React.FC = () => {
           </h1>
 
           <div className="bg-teal-50 p-6 md:p-8 rounded-xl mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
               {/* Left Column: Intro Paragraph + Form */}
               <div>
                 <p className="text-gray-700 mb-4 text-left">
@@ -131,6 +131,11 @@ const TechnicalSupport: React.FC = () => {
                     className="w-full h-32 p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Your question or comment..."
                   ></textarea>
+                  <input
+                    type="tel"
+                    className="w-full mt-4 p-3 border border-gray-300 rounded-md focus:ring-teal-500 focus:border-teal-500"
+                    placeholder="Your Contact Number"
+                  />
                   <button className="mt-4 w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-4 rounded-md transition duration-150 ease-in-out">
                     Send
                   </button>
@@ -139,9 +144,10 @@ const TechnicalSupport: React.FC = () => {
 
               {/* Right Column: Contact Details */}
               <div className="text-left">
+                <br />
                 <div className="space-y-6 md:space-y-8">
                   {/* Sales Section (remains the same) */}
-                  <div className="grid grid-cols-[auto_1fr] items-center gap-x-4 md:gap-x-16">
+                  <div className="grid grid-cols-[auto_1fr] items-center gap-x-4 md:gap-x-20">
                     <h2 className="text-xl font-bold text-gray-900">Sales</h2>
                     <div>
                       {" "}
