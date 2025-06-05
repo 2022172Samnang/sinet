@@ -3,27 +3,27 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-b from-sinet-light to-white relative overflow-hidden min-h-[300px] md:min-h-[400px]">
-      {/* make video display in the middle of the div vertically */}
-      <div className="bg-gradient-to-b from-sinet-light to-white relative overflow-hidden min-h-[300px] md:min-h-[400px]">
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            src="assets/intro_vdo.mov"
-            // poster="https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            Your browser does not support the video tag.
-          </video>
-          <div className="absolute inset-0"></div>
-        </div>
+    <div className="bg-gradient-to-b from-sinet-light to-white relative overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px]">
+      {/* Video container */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="w-full h-full object-cover object-center"
+          src="assets/intro_vdo.mov"
+          // poster="https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{ minHeight: "100%", minWidth: "100%" }}
+        >
+          Your browser does not support the video tag.
+        </video>
+        {/* Optional overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-0"></div>
       </div>
 
       {/* Pattern overlay - reducing the number for better performance with video */}
-      <div className="absolute inset-0 z-0 opacity-5">
+      <div className="absolute inset-0 z-10 opacity-5">
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
