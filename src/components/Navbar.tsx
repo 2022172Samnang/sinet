@@ -98,7 +98,7 @@ const Navbar = () => {
   const customerServicesLinks = [
     {
       to: "/customer-service/technical-support",
-      label: "Technical Support",
+      label: "Customer Support",
       icon: <Phone />,
     },
   ];
