@@ -78,7 +78,7 @@ const BackbonePage = () => {
       </section>
 
       {/* Backbone Network Map */}
-      <section className="bg-gray-200">
+      <section className="bg-white">
         <div className="relative overflow-hidden min-h-[500px] md:min-h-[650px]">
           <video
             className="absolute inset-0 w-full h-full object-contain"
@@ -149,7 +149,7 @@ const BackbonePage = () => {
       </section>
 
       {/* Coverage Map Section */}
-      <section className="bg-gray-300">
+      <section className="bg-white">
         <div className="container mx-auto px-4 md:px-8">
           {/* <div className="bg-gray-200 p-4 inline-block mb-8 rounded">
             <p className="text-sm text-gray-700">
@@ -163,7 +163,7 @@ const BackbonePage = () => {
             <img
               src="assets/about_us/coverage_map.png"
               alt="SINET Coverage Map"
-              className="max-w-2xl w-full h-auto border border-gray-300"
+              className="max-w-2xl w-full h-auto border border-white"
             />
           </div>
         </div>
