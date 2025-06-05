@@ -161,15 +161,14 @@ const InternetPackages: React.FC<InternetPackagesProps> = ({
             <p className="text-md md:text-lg text-gray-700 mb-4 leading-relaxed">
               SINET operates a highly resilient and redundant IP backbone
               completed with industry standard best practices in routing and
-              network security, with multiple gateways to International hubs in
+              network security; with multiple gateways to International hubs in
               Singapore, Hong Kong and Kular Lumpur.
             </p>
             <p className="text-md md:text-lg text-gray-700 leading-relaxed">
-              We have peering connections with numerous domestic networks,
-              international networks and Content Delivery Networks both
-              privately and via public exchanges, including but not limited to
-              HKIX, Equinix, MYIX, Amsterdam IX, BBIX, Google, Facebook, Apple,
-              Akamai, Cloudflare, Zenlayer & Limelight.
+              No matter where you are in Cambodia, city center or remote
+              district, SINET keeps you connected. Our nationwide fiber optic
+              network delivers reliable, high-speed internet to businesses,
+              factories, and branch offices across the country.
             </p>
           </div>
           <div className="flex justify-center">

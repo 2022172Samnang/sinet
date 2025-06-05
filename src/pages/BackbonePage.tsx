@@ -180,14 +180,15 @@ const BackbonePage = () => {
             <p className="text-lg text-gray-700 mb-6">
               SINET operates a highly resilient and redundant IP backbone
               completed with industry standard best practices in routing and
-              network security; with multiple gateways to International hubs in
-              Singapore, Hong Kong and Kular Lumpur.
+              network security, with multiple gateways to International hubs in
+              Singapore, Hong Kong and Kuala Lumpur.
             </p>
             <p className="text-lg text-gray-700">
-              No matter where you are in Cambodia, city center or remote
-              district, SINET keeps you connected. Our nationwide fiber optic
-              network delivers reliable, high-speed internet to businesses,
-              factories, and branch offices across the country
+              We have peering connections with numerous domestic networks,
+              international networks and Content Delivery Networks both
+              privately and via public exchanges, including but not limited to
+              HKIX, Equinix, MYIX, Amsterdam IX, BBIX, Google, Facebook, Apple,
+              Akamai, Cloudflare, Zenlayer & Limelight.
             </p>
           </div>
         </div>
