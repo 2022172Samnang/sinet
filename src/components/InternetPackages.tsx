@@ -174,7 +174,7 @@ const InternetPackages: React.FC<InternetPackagesProps> = ({
           <div className="flex justify-center">
             <div className="relative w-full max-w-5xl aspect-video rounded-lg overflow-hidden shadow-lg">
               <video
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-11/12 h-11/12 mx-auto object-cover"
                 src="assets/about_us/sinet_network_vdo.mp4"
                 autoPlay
                 muted
