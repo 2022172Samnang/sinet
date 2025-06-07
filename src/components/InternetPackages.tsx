@@ -172,7 +172,7 @@ const InternetPackages: React.FC<InternetPackagesProps> = ({
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="relative w-full max-w-5xl aspect-video rounded-lg overflow-hidden shadow-lg">
+            <div className="relative w-full max-w-5xl aspect-video rounded-lg overflow-hidden shadow-lg bg-white">
               <video
                 className="absolute inset-0 w-11/12 h-11/12 mx-auto object-cover"
                 src="assets/about_us/sinet_network_vdo.mp4"
