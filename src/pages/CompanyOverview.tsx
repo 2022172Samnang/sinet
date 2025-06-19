@@ -50,8 +50,6 @@ const CompanyOverview: React.FC = () => {
       <main className="flex-grow">
         {/* Section: About SINET */}
         <section className="bg-teal-50 py-12 md:py-16 overflow-hidden">
-          {" "}
-          {/* Added overflow-hidden for animations */}
           <div className="container mx-auto px-4 text-center max-w-4xl">
             <AnimatedSection yOffset={30}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
@@ -60,16 +58,32 @@ const CompanyOverview: React.FC = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.2} yOffset={25}>
               <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                Founded in 2009, SINET is a leading Internet and Telecom service
-                provider in Cambodia, renowned for engineering excellence and
-                reliable customer support. As one of the country’s largest
-                providers, we deliver high-quality connectivity through our
-                nationwide Fiber, DWDM, SDH, and MetroEthernet backbone,
-                supported by over 200 active Points of Presence (PoPs), spanning
-                major cities, provincial towns, and remote areas.
+                Founded in 2009, SINET is a specialist provider of dedicated
+                Internet and telecommunications services, distinguished by
+                engineering excellence, resilient infrastructure, and responsive
+                support.
               </p>
             </AnimatedSection>
-            <AnimatedSection delay={0.4} yOffset={20}>
+            <AnimatedSection delay={0.3} yOffset={25}>
+              <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                With a nationwide, Metro-Ethernet fibre backbone and more than
+                200 fully owned points of presence, our network reaches not only
+                Cambodia’s major cities and provincial hubs but also remote
+                districts and rural villages, ensuring ubiquitous high-speed
+                connectivity.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection delay={0.4} yOffset={25}>
+              <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                We deliver secure broadband solutions for households seeking
+                reliable streaming and smart-home readiness, and we furnish
+                mission-critical, enterprise-grade links for corporates and
+                finance institutions that demand low-latency performance, robust
+                uptime, and scalable capacity for core banking, cloud, and
+                data-centre integration.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection delay={0.5} yOffset={20}>
               <p className="text-gray-700 text-lg leading-relaxed">
                 SINET is a registered trademark of S.I. Group Co. Ltd., a
                 Cambodia-based conglomerate with over 20 years of experience in
