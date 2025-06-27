@@ -207,17 +207,6 @@ const DPLCService = () => {
           <h2 className="text-3xl font-bold text-center mb-8">SIGN UP</h2>
           <div className="max-w-2xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="mb-4">
-                <label className="block text-gray-700 mb-2">
-                  Select Package
-                </label>
-                <select className="w-full p-2 border rounded">
-                  <option>DPLC - Standard</option>
-                  <option>DPLC - Premium</option>
-                  <option>DPLC - Enterprise</option>
-                </select>
-              </div>
-
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block text-gray-700 mb-2">Name</label>
@@ -229,14 +218,10 @@ const DPLCService = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 gap-4 mb-4">
                 <div>
                   <label className="block text-gray-700 mb-2">Email</label>
                   <input type="email" className="w-full p-2 border rounded" />
-                </div>
-                <div>
-                  <label className="block text-gray-700 mb-2">Address</label>
-                  <input type="text" className="w-full p-2 border rounded" />
                 </div>
               </div>
 
