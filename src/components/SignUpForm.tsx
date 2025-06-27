@@ -3,40 +3,20 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-interface PackageOption {
-  value: string;
-  label: string;
-}
 
 interface SignUpFormProps {
   title?: string;
-  packageOptions: PackageOption[];
-  selectedPackage?: string;
   className?: string; // To be used by ContactForm for p-0 bg-transparent
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({
   title = "SIGN UP",
-  packageOptions,
-  selectedPackage: initialSelectedPackage,
   className,
 }) => {
-  const [selectedPkg, setSelectedPkg] = useState<string | undefined>(
-    initialSelectedPackage
-  );
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    address: "",
     comment: "",
   });
 
@@ -47,14 +27,9 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handlePackageChange = (value: string) => {
-    setSelectedPkg(value);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted with data:", {
-      selectedPackage: selectedPkg,
       ...formData,
     });
   };
@@ -74,27 +49,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
       <div className="max-w-2xl mx-auto">
         <div className="bg-white p-6 md:p-8 rounded-lg shadow-xl">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="mb-5">
-              <label
-                htmlFor="package-select"
-                className="block text-gray-700 mb-2 font-medium"
-              >
-                Select Package
-              </label>
-              <Select value={selectedPkg} onValueChange={handlePackageChange}>
-                <SelectTrigger id="package-select" className="w-full">
-                  <SelectValue placeholder="Select Package" />
-                </SelectTrigger>
-                <SelectContent>
-                  {packageOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label
@@ -130,7 +84,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1">
               <div>
                 <label
                   htmlFor="email"
@@ -143,22 +97,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                   id="email"
                   placeholder="Email"
                   value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="address"
-                  className="block text-gray-700 mb-2 font-medium"
-                >
-                  Address
-                </label>
-                <Input
-                  type="text"
-                  id="address"
-                  placeholder="Address"
-                  value={formData.address}
                   onChange={handleInputChange}
                   required
                 />
@@ -186,7 +124,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
                 type="submit"
                 className="w-full bg-sinet hover:bg-sinet-dark text-white py-3 text-lg font-semibold rounded-md"
                 // Ensure your tailwind.config.js has `sinet` and `sinet-dark` colors
-                // e.g., colors: { sinet: '#YOUR_SINET_COLOR', 'sinet-dark': '#YOUR_SINET_DARK_COLOR' }
+                // e.g., colors: { sinet: '''#YOUR_SINET_COLOR''', '''sinet-dark''': '''#YOUR_SINET_DARK_COLOR''' }
                 // If not, fall back to the teal colors or use the ones from your previous form:
                 // className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 text-lg font-semibold rounded-md"
               >
@@ -231,3 +169,4 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 };
 
 export default SignUpForm;
+

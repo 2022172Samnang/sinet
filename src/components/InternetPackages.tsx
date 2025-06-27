@@ -56,7 +56,10 @@ const packages: PackageDetail[] = [
     title: "ENTERPRISE SOLUTIONS",
     imageSrc: "assets/homepage/enterprise_packages.jpg", // Added leading slash
     imageAlt: "Enterprise Internet Solutions",
-    features: ["> DPLC", "> IPLC", "> IP Transit", "> Virtual Private Server"],
+    descriptionLines: [
+      "Customized solutions for",
+      "large-scale business needs.",
+    ],
     contactSectionId: "#contact",
   },
 ];
